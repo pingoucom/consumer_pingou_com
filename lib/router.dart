@@ -18,5 +18,17 @@ final _router = GoRouter(
       path: '/auth/local/sign-up',
       builder: (context, state) => const LocalSignUpScreen(),
     ),
+    GoRoute(
+      path: '/onboarding/plan',
+      builder: (context, state) => const PlanScreen(),
+    ),
+    GoRoute(
+      path: '/onboarding/credit-card',
+      builder: (context, state) => const CreditCardScreen(),
+    ),
+    GoRoute(
+      path: '/onboarding/address',
+      builder: (context, state) => const AddressScreen(),
+    ),
   ],
 );

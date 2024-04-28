@@ -1,5 +1,5 @@
-import 'package:consumer_pingou_com/components/labeled_divider.dart';
-import 'package:consumer_pingou_com/screens/auth/layout.dart';
+import 'package:consumer_pingou_com/presentation/components/labeled_divider.dart';
+import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,7 +8,23 @@ class SignInOptionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthScreenLayout(
+    return BottomSheetScreenLayout(
+      icon: CircleAvatar(
+        radius: 24,
+        backgroundColor: Colors.black,
+        child: Image.asset(
+          'assets/img/pingou-logo.png',
+          height: 24,
+        ),
+      ),
+      message: const [
+        TextSpan(text: 'Que '),
+        TextSpan(
+          text: 'massa',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        TextSpan(text: ' te ver por aqui!'),
+      ],
       children: [
         ElevatedButton.icon(
           onPressed: () {},

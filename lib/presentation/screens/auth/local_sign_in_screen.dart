@@ -1,21 +1,37 @@
-import 'package:consumer_pingou_com/components/labeled_divider.dart';
-import 'package:consumer_pingou_com/screens/auth/layout.dart';
+import 'package:consumer_pingou_com/presentation/components/labeled_divider.dart';
+import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LocalSignUpScreen extends StatefulWidget {
-  const LocalSignUpScreen({super.key});
+class LocalSignInScreen extends StatefulWidget {
+  const LocalSignInScreen({super.key});
 
   @override
-  State<LocalSignUpScreen> createState() => _LocalSignUpFormState();
+  State<LocalSignInScreen> createState() => _LocalSignInScreenState();
 }
 
-class _LocalSignUpFormState extends State<LocalSignUpScreen> {
+class _LocalSignInScreenState extends State<LocalSignInScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return AuthScreenLayout(
+    return BottomSheetScreenLayout(
+      icon: CircleAvatar(
+        radius: 24,
+        backgroundColor: Colors.black,
+        child: Image.asset(
+          'assets/img/pingou-logo.png',
+          height: 24,
+        ),
+      ),
+      message: const [
+        TextSpan(text: 'Que '),
+        TextSpan(
+          text: 'massa',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        TextSpan(text: ' te ver por aqui!'),
+      ],
       children: [
         Form(
           key: _formKey,
@@ -23,15 +39,6 @@ class _LocalSignUpFormState extends State<LocalSignUpScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Nome',
-                  hintText: 'Digite seu nome',
-                  prefixIcon: Icon(Icons.person),
-                ),
-              ),
-              const SizedBox(height: 12),
               TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -55,8 +62,8 @@ class _LocalSignUpFormState extends State<LocalSignUpScreen> {
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.person_add),
-                label: const Text('Cadastrar'),
+                icon: const Icon(Icons.login),
+                label: const Text('Entrar'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   backgroundColor: Theme.of(context).colorScheme.primary,
@@ -67,13 +74,13 @@ class _LocalSignUpFormState extends State<LocalSignUpScreen> {
         ),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 16),
-          child: const LabeledDivider(label: 'Já tem uma conta?'),
+          child: const LabeledDivider(label: 'Não tem uma conta?'),
         ),
         OutlinedButton.icon(
           onPressed: () async =>
-              GoRouter.of(context).push('/auth/local/sign-in'),
-          icon: const Icon(Icons.login),
-          label: const Text('Entrar'),
+              GoRouter.of(context).push('/auth/local/sign-up'),
+          icon: const Icon(Icons.person_add),
+          label: const Text('Criar conta'),
         ),
       ],
     );
