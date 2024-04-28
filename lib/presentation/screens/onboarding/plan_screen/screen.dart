@@ -2,6 +2,7 @@ import 'package:consumer_pingou_com/domain/entities/plan.dart';
 import 'package:consumer_pingou_com/domain/enums/plan_flag.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/labeled_divider.dart';
+import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 
 part 'plan_card.dart';
 part 'plan_card_carousel.dart';
+part 'plan_card_skeleton.dart';
 part 'plan_choosing_section.dart';
 
 class PlanScreen extends StatelessWidget {
