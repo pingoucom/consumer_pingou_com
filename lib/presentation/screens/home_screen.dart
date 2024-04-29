@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cachacas = context.watch<Shop>().shop;
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.onSecondary,
+        backgroundColor: Color.fromARGB(255, 23, 23, 22),
         appBar: AppBar(
           leading: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -19,8 +19,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/img/pingou-logo.png',
-                  height: 32,
-                  width: 32,
+                  height: 25,
+                  width: 25,
                 ),
               ],
             ),
@@ -38,12 +38,63 @@ class HomeScreen extends StatelessWidget {
           title: const Text("Pingou !"),
         ),
         bottomNavigationBar: MyBottomNavigationBar(),
-        body: ListView.builder(
-          itemCount: cachacas.length,
-          itemBuilder: (context, index) {
-            final cachaca = cachacas[index];
-            return CachacaWidget(cachaca: cachaca);
-          },
+        body: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 150,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.orange[200]!, Colors.orange[400]!],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.delivery_dining_outlined,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  SizedBox(width: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Sua proxima entrega será em ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      Text(
+                        '3 dias!',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 550,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.all(15),
+                itemCount: cachacas.length,
+                itemBuilder: (context, index) {
+                  final cachaca = cachacas[index];
+                  return CachacaWidget(cachaca: cachaca);
+                },
+              ),
+            )
+          ],
         ));
   }
 }
