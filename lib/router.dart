@@ -3,7 +3,7 @@ part of 'main.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/auth/sign-in-options',
+  initialLocation: '/screens/home_screen',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
@@ -29,6 +29,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/onboarding/address',
       builder: (context, state) => const AddressScreen(),
+    ),
+    GoRoute(
+      path: '/screens/home_screen',
+      builder: (context, state) => const HomeScreen(),
     ),
   ],
 );
