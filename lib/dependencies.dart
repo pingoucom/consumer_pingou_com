@@ -5,6 +5,7 @@ var _resolvedDependencies = <Type, dynamic>{};
 void initializeDependencies() {
   register<AddressRepository>(ViaCepAddressRepository());
   register<PlanRepository>(MockedPlanRepository());
+  register<CachacaRepository>(MockedCachacaRepository());
 }
 
 void register<T>(T instance) {

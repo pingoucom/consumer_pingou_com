@@ -1,13 +1,15 @@
-import 'package:consumer_pingou_com/domain/entities/shop.dart';
 import 'package:consumer_pingou_com/domain/repositories/address_repository.dart';
+import 'package:consumer_pingou_com/domain/repositories/cachaca_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/plan_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_cachaca_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_plan_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/viacep/viacep_address_repository.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/sign_in_options_screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/home_screen.dart';
+import 'package:consumer_pingou_com/presentation/screens/home/home_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/address_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';
@@ -28,7 +30,11 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => OnboardingProvider(resolve<PlanRepository>()),
         ),
-        ChangeNotifierProvider(create: (context) => Shop()),
+        ChangeNotifierProvider(
+          create: (_) => HomeScreenProvider(
+            resolve<CachacaRepository>(),
+          ),
+        )
       ],
       child: const MainApp(),
     ),
