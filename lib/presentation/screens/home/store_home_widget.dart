@@ -31,7 +31,7 @@ class _StoreHomeWidget extends StatelessWidget {
               ],
             ),
           ),
-          _CachacaWidgetCarousel(),
+          _ProductWidgetCarousel(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -43,7 +43,7 @@ class _StoreHomeWidget extends StatelessWidget {
               ],
             ),
           ),
-          _CachacaWidgetCarousel(),
+          _ProductWidgetCarousel(),
         ],
       ),
     );

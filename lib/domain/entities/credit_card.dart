@@ -1,15 +1,15 @@
+import 'package:consumer_pingou_com/domain/enums/card_brand.dart';
+
 class CreditCard {
-  final String holderName;
-  final String holderDocument;
-  final String number;
-  final String expirationDate;
-  final String cvv;
+  final String id;
+  final CardBrand brand;
+  final String lastFourDigits;
+  final String holderFirstName;
 
   CreditCard({
-    required this.holderName,
-    required this.holderDocument,
-    required this.number,
-    required this.expirationDate,
-    required this.cvv,
+    required this.id,
+    required this.brand,
+    required this.lastFourDigits,
+    required this.holderFirstName,
   });
 }

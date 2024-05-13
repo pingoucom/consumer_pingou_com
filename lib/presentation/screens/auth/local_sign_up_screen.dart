@@ -70,8 +70,7 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
               ),
               const SizedBox(height: 16),
               ElevatedButton.icon(
-                onPressed: () async =>
-                    GoRouter.of(context).push('/onboarding/plan'),
+                onPressed: () => GoRouter.of(context).push('/onboarding/plan'),
                 icon: const Icon(Icons.person_add),
                 label: const Text('Cadastrar'),
                 style: ElevatedButton.styleFrom(
@@ -87,8 +86,7 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
           child: const LabeledDivider(label: 'Já tem uma conta?'),
         ),
         OutlinedButton.icon(
-          onPressed: () async =>
-              GoRouter.of(context).push('/auth/local/sign-in'),
+          onPressed: () => GoRouter.of(context).push('/auth/local/sign-in'),
           icon: const Icon(Icons.login),
           label: const Text('Entrar'),
         ),

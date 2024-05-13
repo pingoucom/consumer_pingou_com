@@ -1,4 +1,4 @@
-class Cachaca {
+class Product {
   final String id;
   final String name;
   final String description;
@@ -7,7 +7,7 @@ class Cachaca {
   final double price;
   final int stock;
 
-  Cachaca({
+  Product({
     required this.id,
     required this.name,
     required this.description,

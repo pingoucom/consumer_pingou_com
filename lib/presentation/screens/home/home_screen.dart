@@ -1,17 +1,17 @@
-import 'package:consumer_pingou_com/domain/entities/cachaca.dart';
+import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/my_bottom_bar.dart';
 import 'package:consumer_pingou_com/presentation/screens/home/banner_home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-part 'cachaca_skeleton.dart';
-part 'cachaca_widget_carrousel.dart';
-part 'cachaca_widget.dart';
-part 'store_home_widget.dart';
+part 'product_skeleton.dart';
+part 'product_widget.dart';
+part 'product_widget_carrousel.dart';
 part 'category_bar.dart';
-part 'category_widget.dart';
 part 'category_skeleton.dart';
+part 'category_widget.dart';
+part 'store_home_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -50,8 +50,8 @@ class HomeScreen extends StatelessWidget {
           child: Stack(
             children: [
               BannerHome(),
-              Padding(
-                padding: const EdgeInsets.only(top: 150),
+              const Padding(
+                padding: EdgeInsets.only(top: 150),
                 child: Column(
                   children: [
                     _StoreHomeWidget(),

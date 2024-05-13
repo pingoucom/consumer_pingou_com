@@ -1,23 +1,23 @@
 part of 'home_screen.dart';
 
-class _CachacaWidgetCarousel extends StatelessWidget {
+class _ProductWidgetCarousel extends StatelessWidget {
   final _skeletons = [
-    _SkeletonCachacaWidget(),
-    _SkeletonCachacaWidget(),
-    _SkeletonCachacaWidget(),
+    _SkeletonProductWidget(),
+    _SkeletonProductWidget(),
+    _SkeletonProductWidget(),
   ];
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HomeScreenProvider>().loadAvailableCachacas();
+      context.read<HomeScreenProvider>().loadAvailableProducts();
     });
 
     return Consumer<HomeScreenProvider>(
       builder: (context, homeScreenProvider, _) {
-        List<Widget> cards = homeScreenProvider.hasLoadedAvailableCachacas
-            ? homeScreenProvider.availableCachacas
-                .map((cachaca) => _CachacaWidget(cachaca: cachaca))
+        List<Widget> cards = homeScreenProvider.hasLoadedAvailableProducts
+            ? homeScreenProvider.availableProducts
+                .map((product) => _ProductWidget(product: product))
                 .toList()
             : _skeletons;
 

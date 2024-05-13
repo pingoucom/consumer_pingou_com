@@ -14,7 +14,7 @@ class _CategoryBar extends StatelessWidget {
     });
     return Consumer<HomeScreenProvider>(
       builder: (context, homeScreenProvider, _) {
-        List<Widget> categories = homeScreenProvider.hasLoadedAvailableCachacas
+        List<Widget> categories = homeScreenProvider.hasLoadedAvailableProducts
             ? homeScreenProvider.availableCategories
                 .map((category) => _CategoryWidget(category: category))
                 .toList()

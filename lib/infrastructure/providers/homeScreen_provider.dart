@@ -1,74 +1,74 @@
-import 'package:consumer_pingou_com/domain/entities/cachaca.dart';
-import 'package:consumer_pingou_com/domain/repositories/cachaca_repository.dart';
+import 'package:consumer_pingou_com/domain/entities/product.dart';
+import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenProvider extends ChangeNotifier {
-  final CachacaRepository _cachacaRepository;
+  final ProductRepository _productRepository;
 
-  HomeScreenProvider(this._cachacaRepository);
-  List<Cachaca> _availableCachacas = [];
-  bool _isLoadingAvailableCachacas = false;
-  bool _hasLoadedAvailableCachacas = false;
+  HomeScreenProvider(this._productRepository);
+  List<Product> _availableProducts = [];
+  bool _isLoadingAvailableProducts = false;
+  bool _hasLoadedAvailableProducts = false;
 
-  List<Cachaca> get availableCachacas => _availableCachacas;
-  bool get isLoadingAvailableCachacas => _isLoadingAvailableCachacas;
-  bool get hasLoadedAvailableCachacas => _hasLoadedAvailableCachacas;
+  List<Product> get availableProducts => _availableProducts;
+  bool get isLoadingAvailableProducts => _isLoadingAvailableProducts;
+  bool get hasLoadedAvailableProducts => _hasLoadedAvailableProducts;
 
-  void loadAvailableCachacas() async {
-    if (_hasLoadedAvailableCachacas) return;
+  void loadAvailableProducts() async {
+    if (_hasLoadedAvailableProducts) return;
 
-    _isLoadingAvailableCachacas = true;
+    _isLoadingAvailableProducts = true;
     notifyListeners();
 
-    List<Cachaca> cachacas = await _cachacaRepository.getAvailableCachacas();
-    _availableCachacas = cachacas;
-    _hasLoadedAvailableCachacas = true;
-    _isLoadingAvailableCachacas = false;
+    List<Product> products = await _productRepository.getAvailableProducts();
+    _availableProducts = products;
+    _hasLoadedAvailableProducts = true;
+    _isLoadingAvailableProducts = false;
     notifyListeners();
   }
 
-  void refreshAvailableCachacas() async {
-    if (_isLoadingAvailableCachacas) return;
+  void refreshAvailableProducts() async {
+    if (_isLoadingAvailableProducts) return;
 
-    _isLoadingAvailableCachacas = true;
+    _isLoadingAvailableProducts = true;
     notifyListeners();
 
-    List<Cachaca> cachacas = await _cachacaRepository.getAvailableCachacas();
-    _availableCachacas = cachacas;
-    _isLoadingAvailableCachacas = false;
+    List<Product> products = await _productRepository.getAvailableProducts();
+    _availableProducts = products;
+    _isLoadingAvailableProducts = false;
     notifyListeners();
   }
 
   List<String> get availableCategories {
-    return _availableCachacas
-        .map((cachaca) => cachaca.category)
+    return _availableProducts
+        .map((product) => product.category)
         .toSet()
         .toList();
   }
 
-  Map<String, List<Cachaca>> get groupedCachacasByCategory {
-    Map<String, List<Cachaca>> groupedCachacas = {};
-    for (var cachaca in _availableCachacas) {
-      if (groupedCachacas.containsKey(cachaca.category)) {
-        groupedCachacas[cachaca.category]!.add(cachaca);
+  Map<String, List<Product>> get groupedProductsByCategory {
+    Map<String, List<Product>> groupedProducts = {};
+    for (var product in _availableProducts) {
+      if (groupedProducts.containsKey(product.category)) {
+        groupedProducts[product.category]!.add(product);
       } else {
-        groupedCachacas[cachaca.category] = [cachaca];
+        groupedProducts[product.category] = [product];
       }
     }
-    return groupedCachacas;
+    return groupedProducts;
   }
 
   List<String> getCategoryNames() {
-    return _availableCachacas
-        .map((cachaca) => cachaca.category)
+    return _availableProducts
+        .map((product) => product.category)
         .toSet()
         .toList();
   }
 
-  List<Cachaca> getCachacasByCategory(String category) {
-    return _availableCachacas
-        .where((cachaca) => cachaca.category == category)
+  List<Product> getProductsByCategory(String category) {
+    return _availableProducts
+        .where((product) => product.category == category)
         .toList();
   }
 }

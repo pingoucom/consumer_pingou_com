@@ -1,9 +1,9 @@
 part of 'home_screen.dart';
 
-class _CachacaWidget extends StatelessWidget {
-  final Cachaca cachaca;
+class _ProductWidget extends StatelessWidget {
+  final Product product;
 
-  const _CachacaWidget({super.key, required this.cachaca});
+  const _ProductWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _CachacaWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-                cachaca.image,
+                product.image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -33,20 +33,20 @@ class _CachacaWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    cachaca.name,
+                    product.name,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    cachaca.description,
+                    product.description,
                     style: const TextStyle(
                       fontSize: 14,
                     ),
                   ),
                   Text(
-                    '\$${cachaca.price.toStringAsFixed(2)}',
+                    '\$${product.price.toStringAsFixed(2)}',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
