@@ -3,7 +3,7 @@ part of 'main.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/store',
+  initialLocation: '/home',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
@@ -31,12 +31,12 @@ final _router = GoRouter(
       builder: (context, state) => const AddressScreen(),
     ),
     GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomeScreen(),
-    ),
-    GoRoute(
       path: '/store',
       builder: (context, state) => const StoreIndexScreen(),
+    ),
+     GoRoute(
+      path: '/home',
+      builder: (context, state) => const HomeIndexScreen(),
     ),
     GoRoute(
       path: '/checkout/cart',

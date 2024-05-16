@@ -1,14 +1,17 @@
 import 'package:consumer_pingou_com/domain/repositories/address_repository.dart';
+import 'package:consumer_pingou_com/domain/repositories/banner_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/credit_card_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/plan_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_address_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_banner_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_credit_card_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_plan_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_product_repository.dart';
@@ -19,7 +22,7 @@ import 'package:consumer_pingou_com/presentation/screens/auth/sign_in_options_sc
 import 'package:consumer_pingou_com/presentation/screens/checkout/cart/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/checkout/confirmation/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/credit_cards/index/screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/home/home_screen.dart';
+import 'package:consumer_pingou_com/presentation/screens/home/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/address_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';
@@ -61,6 +64,11 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => OnboardingProvider(
             resolve<PlanRepository>(),
+          ),
+        ),
+         ChangeNotifierProvider(
+          create: (_) => HomeBannerScreenProvider(
+            resolve<BannerRepository>(),
           ),
         ),
         ChangeNotifierProvider(

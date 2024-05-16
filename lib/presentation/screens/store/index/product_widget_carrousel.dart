@@ -1,4 +1,4 @@
-part of 'home_screen.dart';
+part of 'screen.dart';
 
 class _ProductWidgetCarousel extends StatelessWidget {
   final _skeletons = [

@@ -26,7 +26,7 @@ class _StoreHomeWidget extends StatelessWidget {
               ],
             ),
           ),
-          _BannerWidgetCarousel(),
+          _ProductWidgetCarousel(),
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
@@ -38,7 +38,7 @@ class _StoreHomeWidget extends StatelessWidget {
               ],
             ),
           ),
-          _BannerWidgetCarousel(),
+          _ProductWidgetCarousel(),
         ],
       ),
     );

@@ -1,6 +1,6 @@
-part of 'home_screen.dart';
+part of 'screen.dart';
 
-class _SkeletonProductWidget extends StatelessWidget {
+class _SkeletonBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

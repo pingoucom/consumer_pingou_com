@@ -1,6 +1,7 @@
-part of 'screen.dart';
 
-class _DailyMessageFactory {
+import 'package:flutter/material.dart';
+
+class DailyMessageFactory {
   static List<TextSpan> _makeMondayMessage() {
     return const [
       TextSpan(text: 'Bora '),

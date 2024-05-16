@@ -1,9 +1,10 @@
-part of 'home_screen.dart';
+part of 'screen.dart';
 
-class _ProductWidget extends StatelessWidget {
-  final Product product;
 
-  const _ProductWidget({super.key, required this.product});
+class _BannerWidget extends StatelessWidget {
+  final Banner_class banner;
+
+  const _BannerWidget({super.key, required this.banner});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class _ProductWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-                product.image,
+                banner.image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -33,23 +34,16 @@ class _ProductWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    product.name,
+                    banner.name,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    product.description,
+                    banner.description,
                     style: const TextStyle(
                       fontSize: 14,
-                    ),
-                  ),
-                  Text(
-                    '\$${product.price.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
