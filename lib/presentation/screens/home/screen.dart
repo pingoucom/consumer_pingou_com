@@ -4,7 +4,9 @@ import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_pr
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/daily_message_factory.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bannered_bottomed_screen_layout.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 
@@ -12,7 +14,6 @@ import 'package:provider/provider.dart';
 part 'banner_widget.dart';
 part 'banner_skeleton.dart';
 part 'banner_widget_carrousel.dart';
-part 'store_home_widget.dart';
 
 class HomeIndexScreen extends StatefulWidget {
   const HomeIndexScreen({super.key});
@@ -36,7 +37,7 @@ class _HomeIndexScreenState extends State<HomeIndexScreen> {
       icon: Icons.local_drink,
       message: DailyMessageFactory.make(),
       children:  [
-        _StoreHomeWidget(),
+        _BannerWidgetCarousel(),
       ],
     );
   }

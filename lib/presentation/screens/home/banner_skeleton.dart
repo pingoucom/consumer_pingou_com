@@ -14,35 +14,9 @@ class _SkeletonBannerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 250,
-            height: 250,
+            width: 308,
+            height: 205,
             color: Colors.grey[400], // Cor do esqueleto
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 150, // Largura do esqueleto
-                  height: 20, // Altura do esqueleto
-                  color: Colors.grey[400], // Cor do esqueleto
-                ),
-                SizedBox(height: 8),
-                Container(
-                  width: 200, // Largura do esqueleto
-                  height: 16, // Altura do esqueleto
-                  color: Colors.grey[400], // Cor do esqueleto
-                ),
-                SizedBox(height: 8),
-                Container(
-                  width: 100, // Largura do esqueleto
-                  height: 20, // Altura do esqueleto
-                  color: Colors.grey[400], // Cor do esqueleto
-                ),
-              ],
-            ),
           ),
         ],
       ),

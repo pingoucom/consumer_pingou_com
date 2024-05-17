@@ -12,8 +12,8 @@ class HomeBannerScreenProvider extends ChangeNotifier {
   bool _hasLoadedAvailableBanners = false;
 
   List<Banner_class> get avaibleBanners => _availableBanners;
-  bool get isLoadingAvailableProducts => _isLoadingAvailableBanners;
-  bool get hasLoadedAvailableProducts => _hasLoadedAvailableBanners;
+  bool get isLoadingAvailableBanners => _isLoadingAvailableBanners;
+  bool get hasLoadedAvailableBanners => _hasLoadedAvailableBanners;
 
   void loadAvailableBanners() async {
     if (_hasLoadedAvailableBanners) return;
@@ -28,7 +28,7 @@ class HomeBannerScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void refreshAvailableProducts() async {
+  void refreshAvailableBanners() async {
     if (_isLoadingAvailableBanners) return;
 
     _isLoadingAvailableBanners = true;
@@ -47,17 +47,15 @@ class HomeBannerScreenProvider extends ChangeNotifier {
         .toList();
   }
 
-  Map<String, List<Banner_class>> get groupedBannersByCategory {
-    Map<String, List<Banner_class>> groupedBanners = {};
-    for (var banner in _availableBanners) {
-      if (groupedBanners.containsKey(banner.category)) {
-        groupedBanners[banner.category]!.add(banner);
-      } else {
-        groupedBanners[banner.category] = [banner];
-      }
+   Map<String, List<Banner_class>> get groupedBanners {
+    Map<String, List<Banner_class>> grouped = {};
+    for (var banner in avaibleBanners) {
+      grouped[banner.category] ??= []; // Cria a lista se não existir
+      grouped[banner.category]!.add(banner); // Adiciona o banner à categoria
     }
-    return groupedBanners;
+    return grouped;
   }
+
 
   List<String> getCategoryNames() {
     return _availableBanners
