@@ -4,6 +4,7 @@ import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_pr
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/daily_message_factory.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bannered_bottomed_screen_layout.dart';
+import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
