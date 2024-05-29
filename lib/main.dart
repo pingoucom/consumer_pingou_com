@@ -10,6 +10,7 @@ import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_pr
 import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/subscription_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_address_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_banner_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_credit_card_repository.dart';
@@ -27,6 +28,8 @@ import 'package:consumer_pingou_com/presentation/screens/onboarding/address_scre
 import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart';
+import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';
+import 'package:consumer_pingou_com/presentation/screens/subscription_plan/subscriptionBanner.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +44,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => SubscriptionProvider()),
         ChangeNotifierProvider(
           create: (_) => AddressProvider(
             resolve<AddressRepository>(),
@@ -66,7 +70,7 @@ void main() {
             resolve<PlanRepository>(),
           ),
         ),
-         ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (_) => HomeBannerScreenProvider(
             resolve<BannerRepository>(),
           ),
