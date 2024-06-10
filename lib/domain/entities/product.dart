@@ -6,6 +6,7 @@ class Product {
   final String category;
   final double price;
   final int stock;
+  final List<String> tagIds;
 
   Product({
     required this.id,
@@ -15,5 +16,6 @@ class Product {
     required this.image,
     required this.price,
     required this.stock,
+    this.tagIds = const [],
   });
 }

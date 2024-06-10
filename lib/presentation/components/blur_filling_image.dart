@@ -39,7 +39,7 @@ class BlurFillingImage extends StatelessWidget {
               ),
               child: Image(
                 image: image,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 width: width,
                 height: height,
               ),

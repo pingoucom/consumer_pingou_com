@@ -26,23 +26,25 @@ class _TagList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<StoreProvider>(
       builder: (context, storeProvider, _) {
-        if (!storeProvider.hasLoadedFeaturedProductTags) {
+        if (!storeProvider.hasLoadedInitialData) {
           return skeleton(context);
         }
 
+        final tags = storeProvider.productTagsById.values;
+
         return ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: storeProvider.featuredProductTags.length,
+          itemCount: tags.length,
           itemBuilder: (context, index) {
-            final tag = storeProvider.featuredProductTags[index];
+            final tag = tags.elementAt(index);
             EdgeInsetsGeometry margin;
 
             if (index == 0) {
-              margin = const EdgeInsets.only(left: 16, right: 8);
-            } else if (index == storeProvider.featuredProductTags.length - 1) {
+              margin = const EdgeInsets.only(left: 16, right: 4);
+            } else if (index == tags.length - 1) {
               margin = const EdgeInsets.only(right: 16);
             } else {
-              margin = const EdgeInsets.only(right: 8);
+              margin = const EdgeInsets.only(right: 4);
             }
 
             return Container(
@@ -52,7 +54,7 @@ class _TagList extends StatelessWidget {
                 onSelected: (selected) => selected
                     ? storeProvider.setSelectedProductTag(tag)
                     : storeProvider.clearSelectedProductTag(),
-                selectedTagId: storeProvider.selectedFeaturedProductTagId,
+                selectedTagId: storeProvider.selectedProductTagId,
               ),
             );
           },

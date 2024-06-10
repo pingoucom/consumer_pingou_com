@@ -1,3 +1,4 @@
+import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/domain/entities/product_tag.dart';
 import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
 import 'package:flutter/material.dart';
@@ -7,55 +8,88 @@ class StoreProvider extends ChangeNotifier {
 
   StoreProvider(this._productRepository);
 
-  final List<ProductTag> _featuredProductTags = [
-    ProductTag(
-      id: '1',
-      slug: 'recommended',
-    ),
-    ProductTag(
-      id: '2',
-      slug: 'new',
-    ),
-    ProductTag(
-      id: '3',
-      slug: 'regional',
-    ),
-    ProductTag(
-      id: '4',
-      slug: 'yellow',
-    ),
-  ];
+  final Map<String, List<Product>> _featuredProductsByTagId = {};
+  final Map<String, String?> _lastProductIdsByTagId = {};
+  final Map<String, ProductTag> _productTagsById = {};
+  String? _selectedProductTagId;
+  bool _hasLoadedInitialData = false;
 
-  String? _selectedFeaturedProductTagId;
-  bool _hasLoadedFeaturedProductTags = false;
+  Map<String, List<Product>> get featuredProductsByTagId =>
+      Map.unmodifiable(_featuredProductsByTagId);
+  Map<String, ProductTag> get productTagsById =>
+      Map.unmodifiable(_productTagsById);
+  String? get selectedProductTagId => _selectedProductTagId;
+  bool get hasLoadedInitialData => _hasLoadedInitialData;
 
-  List<ProductTag> get featuredProductTags =>
-      List.unmodifiable(_featuredProductTags);
-  String? get selectedFeaturedProductTagId => _selectedFeaturedProductTagId;
-  bool get hasLoadedFeaturedProductTags => _hasLoadedFeaturedProductTags;
+  bool hasMoreFeaturedProductsToLoad(String tagId) {
+    return _lastProductIdsByTagId[tagId] != null;
+  }
 
   void setSelectedProductTag(ProductTag productTag) {
-    if (productTag.id == _selectedFeaturedProductTagId) {
+    if (productTag.id == _selectedProductTagId) {
       return;
     }
 
-    _selectedFeaturedProductTagId = productTag.id;
+    _selectedProductTagId = productTag.id;
     notifyListeners();
   }
 
   void clearSelectedProductTag() {
-    _selectedFeaturedProductTagId = null;
+    _selectedProductTagId = null;
     notifyListeners();
   }
 
-  void loadFeaturedProductTags() async {
-    if (_hasLoadedFeaturedProductTags) return;
+  void loadMoreFeaturedProductsForTagId(String tagId) async {
+    if (!hasMoreFeaturedProductsToLoad(tagId)) return;
 
-    _featuredProductTags.clear();
-    _featuredProductTags
-        .addAll(await _productRepository.getFeaturedProductTags());
+    final lastProductId = _lastProductIdsByTagId[tagId];
+    if (lastProductId == null) return;
 
-    _hasLoadedFeaturedProductTags = true;
+    final products = await _productRepository.getFeaturedProducts(
+      tagIds: [tagId],
+      lastProductId: lastProductId,
+    );
+
+    if (products.isNotEmpty) {
+      _featuredProductsByTagId[tagId]!.addAll(products);
+      _lastProductIdsByTagId[tagId] = products.last.id;
+    } else {
+      _lastProductIdsByTagId[tagId] = null;
+    }
+
+    notifyListeners();
+  }
+
+  void loadInitialData() async {
+    if (_hasLoadedInitialData) return;
+
+    final loadedProductTags = await _productRepository.getProductTags();
+
+    _productTagsById.clear();
+
+    for (final productTag in loadedProductTags) {
+      _productTagsById[productTag.id] = productTag;
+    }
+
+    final products = await _productRepository.getFeaturedProducts();
+
+    for (var product in products) {
+      final tagId = product.tagIds.first;
+
+      if (_featuredProductsByTagId[tagId] == null) {
+        _featuredProductsByTagId[tagId] = [];
+      }
+
+      _featuredProductsByTagId[tagId]!.add(product);
+    }
+
+    _lastProductIdsByTagId.clear();
+
+    for (final tagId in _featuredProductsByTagId.keys) {
+      _lastProductIdsByTagId[tagId] = _featuredProductsByTagId[tagId]!.last.id;
+    }
+
+    _hasLoadedInitialData = true;
     notifyListeners();
   }
 }

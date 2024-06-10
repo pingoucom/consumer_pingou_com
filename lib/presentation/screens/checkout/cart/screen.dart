@@ -1,8 +1,9 @@
 import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bannered_bottom_less_screen_layout.dart';
-import 'package:consumer_pingou_com/presentation/partials/horizontal_product_cart.dart';
+import 'package:consumer_pingou_com/presentation/partials/product/horizontal_product_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -138,7 +139,7 @@ class _ContinueButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: () => GoRouter.of(context).push('/checkout/confirmation'),
         icon: const Icon(Icons.arrow_right_alt),
         label: const Text('Continuar'),
         style: ElevatedButton.styleFrom(

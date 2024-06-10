@@ -6,5 +6,10 @@ abstract class ProductRepository {
 
   Future<List<Product>> getProductsById(List<String> ids);
 
-  Future<List<ProductTag>> getFeaturedProductTags();
+  Future<List<ProductTag>> getProductTags();
+
+  Future<List<Product>> getFeaturedProducts({
+    List<String>? tagIds,
+    String? lastProductId,
+  });
 }

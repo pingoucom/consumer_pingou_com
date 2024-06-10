@@ -1,5 +1,6 @@
 import 'package:consumer_pingou_com/domain/entities/product_tag.dart';
 import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
+import 'package:consumer_pingou_com/utils/parse_icon.dart';
 import 'package:flutter/material.dart';
 
 class TagChip extends StatelessWidget {
@@ -16,41 +17,11 @@ class TagChip extends StatelessWidget {
     required this.onSelected,
   });
 
-  IconData get icon {
-    switch (tag.slug) {
-      case 'recommended':
-        return Icons.star;
-      case 'new':
-        return Icons.fiber_new;
-      case 'regional':
-        return Icons.map;
-      case 'yellow':
-        return Icons.sunny;
-      default:
-        return Icons.local_offer;
-    }
-  }
-
-  String get label {
-    switch (tag.slug) {
-      case 'recommended':
-        return 'Recomendada';
-      case 'new':
-        return 'Nova';
-      case 'regional':
-        return 'Regional';
-      case 'yellow':
-        return 'Amarela';
-      default:
-        return tag.slug;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return ChoiceChip(
-      avatar: Icon(icon),
-      label: Text(label),
+      avatar: Icon(parseIcon(tag.iconId) ?? Icons.local_offer),
+      label: Text(tag.name),
       selected: tag.id == selectedTagId,
       onSelected: onSelected,
       shape: RoundedRectangleBorder(

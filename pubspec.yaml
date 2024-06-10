@@ -24,4 +24,5 @@ flutter:
   assets:
     - assets/img/
     - assets/img/card-brands/
+    - assets/img/products/
   uses-material-design: true
