@@ -1,4 +1,4 @@
-part of 'home_screen.dart';
+part of 'screen.dart';
 
 class _ProductWidget extends StatelessWidget {
   final Product product;

@@ -31,12 +31,20 @@ final _router = GoRouter(
       builder: (context, state) => const AddressScreen(),
     ),
     GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomeScreen(),
-    ),
-    GoRoute(
       path: '/store',
       builder: (context, state) => const StoreIndexScreen(),
+    ),
+    GoRoute(
+      path: '/home',
+      builder: (context, state) => const HomeIndexScreen(),
+    ),
+    GoRoute(
+      path: '/subscription',
+      builder: (context, state) => const SubscriptionBanner(),
+    ),
+    GoRoute(
+      path: '/subscription/allPlans',
+      builder: (context, state) => const AvailablePlansPage(),
     ),
     GoRoute(
       path: '/checkout/cart',

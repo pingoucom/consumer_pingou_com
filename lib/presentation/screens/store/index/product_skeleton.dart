@@ -1,4 +1,4 @@
-part of 'home_screen.dart';
+part of 'screen.dart';
 
 class _SkeletonProductWidget extends StatelessWidget {
   @override

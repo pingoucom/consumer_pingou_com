@@ -1,4 +1,5 @@
 import 'package:consumer_pingou_com/presentation/components/decorated_banner.dart';
+import 'package:consumer_pingou_com/presentation/components/my_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class BanneredBottomedScreenLayout extends StatelessWidget {
@@ -34,6 +35,7 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
         ),
         title: const Text('Pingou!'),
       ),
+      bottomNavigationBar: MyBottomNavigationBar(),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(

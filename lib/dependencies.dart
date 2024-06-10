@@ -7,6 +7,7 @@ void initializeDependencies() {
   register<CreditCardRepository>(MockedCreditCardRepository());
   register<PlanRepository>(MockedPlanRepository());
   register<ProductRepository>(MockedProductRepository());
+  register<BannerRepository>(MockedBannerRepository());
 }
 
 void register<T>(T instance) {
