@@ -3,7 +3,7 @@ part of 'main.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/store/123',
+  initialLocation: '/store/1',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
