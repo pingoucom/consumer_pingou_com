@@ -28,6 +28,13 @@ class _TagProductsList extends StatelessWidget {
           return skeleton(context);
         }
 
+        if (storeProvider.selectedProductTagId != null) {
+          return _SingleTagProductList(
+            products: storeProvider
+                .featuredProductsByTagId[storeProvider.selectedProductTagId!]!,
+          );
+        }
+
         return ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,

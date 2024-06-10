@@ -28,6 +28,7 @@ import 'package:consumer_pingou_com/presentation/screens/onboarding/address_scre
 import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart';
+import 'package:consumer_pingou_com/presentation/screens/store/show/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/subscriptionBanner.dart';
 import 'package:flutter/material.dart';

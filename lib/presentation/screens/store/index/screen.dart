@@ -14,6 +14,7 @@ part 'product_list_by_tag.dart';
 part 'product_skeleton.dart';
 part 'product_widget.dart';
 part 'product_widget_carrousel.dart';
+part 'single_tag_product_list.dart';
 part 'store_home_widget.dart';
 part 'tag_list.dart';
 part 'tag_products_list.dart';
