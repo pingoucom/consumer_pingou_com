@@ -39,6 +39,7 @@ class _StoreIndexScreenState extends State<StoreIndexScreen> {
   @override
   Widget build(BuildContext context) {
     return BanneredBottomedScreenLayout(
+      bottomBarIndex: 1,
       icon: Icons.local_drink,
       message: DailyMessageFactory.make(),
       stickyHeader: _TagList(),

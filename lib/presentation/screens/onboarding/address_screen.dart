@@ -1,6 +1,7 @@
 import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
 import 'package:consumer_pingou_com/presentation/partials/address/address_form.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AddressScreen extends StatelessWidget {
   const AddressScreen({super.key});
@@ -21,8 +22,10 @@ class AddressScreen extends StatelessWidget {
         ),
         TextSpan(text: '!'),
       ],
-      children: const [
-        AddressForm(),
+      children: [
+        AddressForm(
+          onAddressSubmitted: (_) => GoRouter.of(context).replace('/home'),
+        ),
       ],
     );
   }

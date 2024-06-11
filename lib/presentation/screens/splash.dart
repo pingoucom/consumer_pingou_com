@@ -15,7 +15,8 @@ class Splash extends StatelessWidget {
         width: 600,
         child: Image.asset('assets/img/logo2.png'),
       ),
-      onAnimationEnd: () => GoRouter.of(context).replace('/home'),
+      onAnimationEnd: () =>
+          GoRouter.of(context).replace('/auth/sign-in-options'),
     );
   }
 }

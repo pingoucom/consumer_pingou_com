@@ -27,6 +27,7 @@ class _HomeIndexScreenState extends State<HomeIndexScreen> {
   @override
   Widget build(BuildContext context) {
     return BanneredBottomedScreenLayout(
+      bottomBarIndex: 0,
       icon: Icons.local_drink,
       message: DailyMessageFactory.make(),
       children: [

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
+  final int selectedIndex;
+
+  const MyBottomNavigationBar({required this.selectedIndex});
+
   @override
   _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
 }
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -20,11 +23,23 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       showUnselectedLabels: true,
       elevation: 2,
       type: BottomNavigationBarType.fixed,
-      currentIndex: _selectedIndex,
+      currentIndex: widget.selectedIndex,
       onTap: (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
+        switch (index) {
+          case 0:
+            GoRouter.of(context).replace('/home');
+            break;
+          case 1:
+            GoRouter.of(context).replace('/store');
+            break;
+          case 2:
+            GoRouter.of(context).push('/subscription');
+            break;
+          case 3:
+            GoRouter.of(context).push('/orders');
+            break;
+          default:
+        }
       },
       items: [
         _buildBottomNavigationBarItem(Icons.home_outlined, 'Home', 0),
@@ -44,8 +59,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(15),
-          color:
-              _selectedIndex == index ? Color(0xFFFAE287) : Colors.transparent,
+          color: widget.selectedIndex == index
+              ? Color(0xFFFAE287)
+              : Colors.transparent,
         ),
         child: Icon(
           icon,

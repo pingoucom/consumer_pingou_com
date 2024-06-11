@@ -1,6 +1,7 @@
 import 'package:consumer_pingou_com/domain/entities/subscriptionPlan.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/subscription_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class AvailablePlansPage extends StatelessWidget {
@@ -11,14 +12,11 @@ class AvailablePlansPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       appBar: AppBar(
-        leading: Container(
-          margin: const EdgeInsets.symmetric(vertical: 12),
-          child: Image.asset(
-            'assets/img/logo.png',
-            height: 24,
-            width: 24,
-            fit: BoxFit.contain,
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => GoRouter.of(context).canPop()
+              ? GoRouter.of(context).pop()
+              : GoRouter.of(context).go('/home'),
         ),
         title: const Text('Pingou!'),
       ),

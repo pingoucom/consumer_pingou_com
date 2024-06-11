@@ -1,13 +1,14 @@
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/decorated_banner.dart';
 import 'package:consumer_pingou_com/presentation/components/my_bottom_bar.dart';
-import 'package:consumer_pingou_com/presentation/layouts/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class BanneredBottomedScreenLayout extends StatelessWidget {
   final Widget? stickyHeader;
+
+  final int bottomBarIndex;
 
   final List<Widget> children;
 
@@ -18,6 +19,7 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
   const BanneredBottomedScreenLayout({
     super.key,
     this.stickyHeader,
+    required this.bottomBarIndex,
     required this.children,
     required this.icon,
     required this.message,
@@ -39,6 +41,9 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
         title: const Text('Pingou!'),
       ),
       floatingActionButton: _DynamicCartFloatingActionButton(),
+      bottomNavigationBar: MyBottomNavigationBar(
+        selectedIndex: bottomBarIndex,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(

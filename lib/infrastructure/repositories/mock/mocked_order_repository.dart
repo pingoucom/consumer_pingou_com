@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:math';
 
 import 'package:consumer_pingou_com/domain/entities/address.dart';
@@ -58,22 +59,25 @@ class MockedOrderRepository implements OrderRepository {
   Future<Order> add(Map<Product, double> items, Address address,
       CreditCard creditCard) async {
     int delayInMilliseconds = 1000 + _random.nextInt(2000);
+    Order order = Order(
+      id: (_random.nextInt(1000) + 1000).toString(),
+      status: OrderStatus.received,
+      address: address,
+      creditCard: creditCard,
+      items: items,
+      deliveryFee: 10.0,
+      serviceFee: 5.0,
+      total:
+          items.keys.map((p) => p.price * items[p]!).reduce((a, b) => a + b) +
+              15.0,
+      createdAt: DateTime.now(),
+    );
+
+    _orders.add(order);
 
     return Future.delayed(
       Duration(milliseconds: delayInMilliseconds),
-      () => Order(
-        id: (_random.nextInt(1000) + 1000).toString(),
-        status: OrderStatus.received,
-        address: address,
-        creditCard: creditCard,
-        items: items,
-        deliveryFee: 10.0,
-        serviceFee: 5.0,
-        total:
-            items.keys.map((p) => p.price * items[p]!).reduce((a, b) => a + b) +
-                15.0,
-        createdAt: DateTime.now(),
-      ),
+      () => order,
     );
   }
 
@@ -89,6 +93,8 @@ class MockedOrderRepository implements OrderRepository {
 
   @override
   Future<Order?> find(String orderId) async {
+    inspect(_orders);
+
     int delayInMilliseconds = 1000 + _random.nextInt(2000);
 
     return Future.delayed(

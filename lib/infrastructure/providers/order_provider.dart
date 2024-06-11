@@ -31,6 +31,7 @@ class OrderProvider extends ChangeNotifier {
 
     final orders = await _orderRepository.get();
 
+    _userOrders.clear();
     _userOrders.addAll(orders);
     _hasLoadedInitialOrders = true;
 

@@ -1,5 +1,4 @@
 import 'package:consumer_pingou_com/infrastructure/providers/subscription_provider.dart';
-import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -12,16 +11,13 @@ class SubscriptionBanner extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
-        leading: Container(
-          margin: const EdgeInsets.symmetric(vertical: 12),
-          child: Image.asset(
-            'assets/img/logo.png',
-            height: 50,
-            width: 50,
-            fit: BoxFit.contain,
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => GoRouter.of(context).canPop()
+              ? GoRouter.of(context).pop()
+              : GoRouter.of(context).go('/home'),
         ),
-        title: const Text('Pingou!'),
+        title: const Text('Assinatura'),
       ),
       body: Consumer<SubscriptionProvider>(
         builder: (context, provider, child) {
@@ -29,8 +25,6 @@ class SubscriptionBanner extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             children: [
               Center(child: _currentPlanCard(provider, context)),
-              const SizedBox(height: 16),
-              Center(child: _paymentOptionCard(context)),
               const SizedBox(height: 16),
               Center(child: _availablePlansCard(provider, context)),
             ],
@@ -91,24 +85,6 @@ class SubscriptionBanner extends StatelessWidget {
     );
   }
 
-  Widget _paymentOptionCard(BuildContext context) {
-    return Card(
-      color: Theme.of(context).colorScheme.surface,
-      child: ListTile(
-        title: Text('Pagamentos',
-            style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
-        subtitle: Text('Ver opções e detalhes',
-            style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurfaceVariant)),
-        trailing: Icon(Icons.arrow_forward,
-            color: Theme.of(context).colorScheme.onSurface),
-        onTap: () {
-          // Navegar para a tela de pagamentos
-        },
-      ),
-    );
-  }
-
   Widget _availablePlansCard(
       SubscriptionProvider provider, BuildContext context) {
     return Card(
@@ -121,9 +97,7 @@ class SubscriptionBanner extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onSurfaceVariant)),
         trailing: Icon(Icons.arrow_forward,
             color: Theme.of(context).colorScheme.onSurface),
-        onTap: () => GoRouter.of(context).canPop()
-            ? GoRouter.of(context).pop()
-            : GoRouter.of(context).go('/subscription/allPlans'),
+        onTap: () => GoRouter.of(context).push('/subscription/allPlans'),
       ),
     );
   }
