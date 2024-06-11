@@ -33,10 +33,10 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             GoRouter.of(context).replace('/store');
             break;
           case 2:
-            GoRouter.of(context).push('/subscription');
+            GoRouter.of(context).pushReplacement('/subscription');
             break;
           case 3:
-            GoRouter.of(context).push('/orders');
+            GoRouter.of(context).pushReplacement('/orders');
             break;
           default:
         }

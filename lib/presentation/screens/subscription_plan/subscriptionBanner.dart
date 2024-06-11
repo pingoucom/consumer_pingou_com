@@ -15,7 +15,7 @@ class SubscriptionBanner extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).go('/home'),
+              : GoRouter.of(context).pushReplacement('/home'),
         ),
         title: const Text('Assinatura'),
       ),
@@ -97,7 +97,8 @@ class SubscriptionBanner extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onSurfaceVariant)),
         trailing: Icon(Icons.arrow_forward,
             color: Theme.of(context).colorScheme.onSurface),
-        onTap: () => GoRouter.of(context).push('/subscription/allPlans'),
+        onTap: () =>
+            GoRouter.of(context).pushReplacement('/subscription/allPlans'),
       ),
     );
   }

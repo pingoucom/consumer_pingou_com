@@ -25,8 +25,8 @@ class _SingleTagProductList extends StatelessWidget {
             height: 244,
             child: VerticalProductCard(
               product: products[index],
-              onTap: () =>
-                  GoRouter.of(context).go('/store/${products[index].id}'),
+              onTap: () => GoRouter.of(context)
+                  .pushReplacement('/store/${products[index].id}'),
             ),
           ),
         ),

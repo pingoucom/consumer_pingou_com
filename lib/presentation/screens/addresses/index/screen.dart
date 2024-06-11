@@ -21,7 +21,7 @@ class AddressesIndexScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).go('/home'),
+              : GoRouter.of(context).pushReplacement('/home'),
         ),
         title: const Text('Endereços'),
       ),

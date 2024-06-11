@@ -58,7 +58,8 @@ class SignInOptionsScreen extends StatelessWidget {
           child: const LabeledDivider(label: 'ou'),
         ),
         ElevatedButton.icon(
-          onPressed: () => GoRouter.of(context).push('/auth/local/sign-in'),
+          onPressed: () =>
+              GoRouter.of(context).pushReplacement('/auth/local/sign-in'),
           icon: const Icon(Icons.email),
           label: const Text('Entrar com e-mail'),
           style: ElevatedButton.styleFrom(

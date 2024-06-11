@@ -13,7 +13,7 @@ class _ProductDisplay extends StatefulWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).go('/home'),
+              : GoRouter.of(context).pushReplacement('/home'),
         ),
         title: const SkeletonShape(
           width: 103,
@@ -195,7 +195,7 @@ class _ProductDetailsState extends State<_ProductDisplay> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).go('/home'),
+              : GoRouter.of(context).pushReplacement('/home'),
         ),
         title: Text(widget.productDetails.product.name),
       ),
@@ -287,8 +287,8 @@ class _ProductDetailsState extends State<_ProductDisplay> {
                     padding: padding,
                     child: VerticalProductCard(
                       product: product,
-                      onTap: () =>
-                          GoRouter.of(context).push('/store/${product.id}'),
+                      onTap: () => GoRouter.of(context)
+                          .pushReplacement('/store/${product.id}'),
                     ),
                   );
                 },
@@ -333,7 +333,7 @@ class _ProductDetailsState extends State<_ProductDisplay> {
 
                   GoRouter.of(context).canPop()
                       ? GoRouter.of(context).pop()
-                      : GoRouter.of(context).go('/store');
+                      : GoRouter.of(context).pushReplacement('/store');
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Theme.of(context).colorScheme.onPrimary,

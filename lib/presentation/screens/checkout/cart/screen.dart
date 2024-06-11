@@ -139,7 +139,8 @@ class _ContinueButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: ElevatedButton.icon(
-        onPressed: () => GoRouter.of(context).push('/checkout/confirmation'),
+        onPressed: () =>
+            GoRouter.of(context).pushReplacement('/checkout/confirmation'),
         icon: const Icon(Icons.arrow_right_alt),
         label: const Text('Continuar'),
         style: ElevatedButton.styleFrom(

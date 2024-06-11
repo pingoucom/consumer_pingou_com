@@ -28,7 +28,7 @@ class BanneredBottomLessScreenLayout extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).go('/home'),
+              : GoRouter.of(context).pushReplacement('/home'),
         ),
         title: const SkeletonShape(
           width: 160,
@@ -82,7 +82,7 @@ class BanneredBottomLessScreenLayout extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).go('/home'),
+              : GoRouter.of(context).pushReplacement('/home'),
         ),
         title: title,
       ),

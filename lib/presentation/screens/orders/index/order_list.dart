@@ -49,7 +49,7 @@ class _OrderList extends StatelessWidget {
           itemBuilder: (context, index) => OrderCard(
             order: orderProvider.userOrders.elementAt(index),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => GoRouter.of(context).push(
+            onTap: () => GoRouter.of(context).pushReplacement(
                 '/orders/${orderProvider.userOrders.elementAt(index).id}'),
           ),
         );

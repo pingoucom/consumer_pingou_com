@@ -77,7 +77,8 @@ class _LocalSignInScreenState extends State<LocalSignInScreen> {
           child: const LabeledDivider(label: 'Não tem uma conta?'),
         ),
         OutlinedButton.icon(
-          onPressed: () => GoRouter.of(context).push('/auth/local/sign-up'),
+          onPressed: () =>
+              GoRouter.of(context).pushReplacement('/auth/local/sign-up'),
           icon: const Icon(Icons.person_add),
           label: const Text('Criar conta'),
         ),
