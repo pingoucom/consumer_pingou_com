@@ -23,7 +23,11 @@ class _SingleTagProductList extends StatelessWidget {
           products.length,
           (index) => SizedBox(
             height: 244,
-            child: VerticalProductCard(product: products[index]),
+            child: VerticalProductCard(
+              product: products[index],
+              onTap: () =>
+                  GoRouter.of(context).go('/store/${products[index].id}'),
+            ),
           ),
         ),
       ),

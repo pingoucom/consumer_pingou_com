@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:consumer_pingou_com/domain/dto/product/product_details.dart';
 import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/domain/entities/product_tag.dart';
 import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
@@ -485,6 +486,31 @@ class MockedProductRepository implements ProductRepository {
           })
           .where((product) => product.id.compareTo(lastProductId ?? '') > 0)
           .toList(),
+    );
+  }
+
+  @override
+  Future<ProductDetails> findProductAndRelated(
+      {required String productId}) async {
+    int delayInMilliseconds = 1000 + _random.nextInt(2000);
+
+    return Future.delayed(
+      Duration(milliseconds: delayInMilliseconds),
+      () {
+        final product =
+            _productsWithTags.firstWhere((product) => product.id == productId);
+
+        final related = _productsWithTags
+            .where((candidate) => candidate.tagIds.any((tagId) =>
+                product.tagIds.contains(tagId) && candidate.id != product.id))
+            .where((candidate) => candidate.id != productId)
+            .toList();
+
+        return ProductDetails(
+          product: product,
+          related: related,
+        );
+      },
     );
   }
 }

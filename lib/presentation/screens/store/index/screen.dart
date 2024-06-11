@@ -8,6 +8,7 @@ import 'package:consumer_pingou_com/presentation/layouts/bannered_bottomed_scree
 import 'package:consumer_pingou_com/presentation/partials/product/tag_chip.dart';
 import 'package:consumer_pingou_com/presentation/partials/product/vertical_product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 part 'product_list_by_tag.dart';

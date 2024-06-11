@@ -7,9 +7,12 @@ import 'package:intl/intl.dart';
 class VerticalProductCard extends StatelessWidget {
   final Product product;
 
+  final GestureTapCallback? onTap;
+
   const VerticalProductCard({
     super.key,
     required this.product,
+    this.onTap,
   });
 
   static Widget skeleton(BuildContext context) {
@@ -70,46 +73,49 @@ class VerticalProductCard extends StatelessWidget {
       child: Card(
         clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.symmetric(vertical: 4),
-        child: Column(
-          children: [
-            BlurFillingImage(
-              image: AssetImage(product.image),
-              height: 150,
-              width: 180,
-            ),
-            Expanded(
-              child: ListTile(
-                title: Text(
-                  product.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      product.description,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      NumberFormat.simpleCurrency(
-                        locale: 'pt_BR',
-                      ).format(product.price),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                isThreeLine: true,
+        child: InkWell(
+          onTap: onTap,
+          child: Column(
+            children: [
+              BlurFillingImage(
+                image: AssetImage(product.image),
+                height: 150,
+                width: 180,
               ),
-            ),
-          ],
+              Expanded(
+                child: ListTile(
+                  title: Text(
+                    product.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        product.description,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        NumberFormat.simpleCurrency(
+                          locale: 'pt_BR',
+                        ).format(product.price),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  isThreeLine: true,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,9 @@
+import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/decorated_banner.dart';
 import 'package:consumer_pingou_com/presentation/components/my_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class BanneredBottomedScreenLayout extends StatelessWidget {
   final Widget? stickyHeader;
@@ -36,6 +39,7 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
         title: const Text('Pingou!'),
       ),
       bottomNavigationBar: MyBottomNavigationBar(),
+      floatingActionButton: _DynamicCartFloatingActionButton(),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -77,6 +81,30 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _DynamicCartFloatingActionButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CheckoutProvider>(
+      builder: (context, checkoutProvider, _) {
+        return checkoutProvider.isEmpty
+            ? const SizedBox.shrink()
+            : IconButton(
+                onPressed: () => GoRouter.of(context).push('/checkout/cart'),
+                icon: Badge(
+                  offset: const Offset(12, -12),
+                  label: Text(checkoutProvider.aggregatedQuantity.toString()),
+                  child: const Icon(Icons.shopping_cart),
+                ),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                ),
+              );
+      },
     );
   }
 }

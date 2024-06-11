@@ -1,3 +1,4 @@
+import 'package:consumer_pingou_com/domain/dto/product/product_details.dart';
 import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/domain/entities/product_tag.dart';
 import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
@@ -91,5 +92,11 @@ class StoreProvider extends ChangeNotifier {
 
     _hasLoadedInitialData = true;
     notifyListeners();
+  }
+
+  Future<ProductDetails> findProductAndRelated(String productId) {
+    return _productRepository.findProductAndRelated(
+      productId: productId,
+    );
   }
 }

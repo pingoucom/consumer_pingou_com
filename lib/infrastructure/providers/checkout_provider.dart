@@ -8,48 +8,52 @@ class CheckoutProvider extends ChangeNotifier {
   CheckoutProvider(this._productRepository);
 
   final List<MapEntry<Product, double>> _cartEntries = [
-    MapEntry(
-      Product(
-        id: '1',
-        name: 'Cachaça 1',
-        description: 'Descrição da cachaça 1',
-        image: 'assets/img/sagatiba.jpeg',
-        category: 'Recomendados',
-        price: 25.25,
-        stock: 2,
-      ),
-      1,
-    ),
-    MapEntry(
-      Product(
-        id: '2',
-        name: 'Cachaça 2',
-        description: 'Descrição da cachaça 2',
-        image: 'assets/img/matuta.jpeg',
-        category: 'Recomendados',
-        price: 50.25,
-        stock: 2,
-      ),
-      2,
-    ),
-    MapEntry(
-      Product(
-        id: '3',
-        name: 'Cachaça 3',
-        description: 'Descrição da cachaça 3',
-        category: "Prata",
-        image: 'assets/img/sagatiba.jpeg',
-        price: 25.25,
-        stock: 2,
-      ),
-      3,
-    ),
+    // MapEntry(
+    //   Product(
+    //     id: '1',
+    //     name: 'Cachaça 1',
+    //     description: 'Descrição da cachaça 1',
+    //     image: 'assets/img/sagatiba.jpeg',
+    //     category: 'Recomendados',
+    //     price: 25.25,
+    //     stock: 2,
+    //   ),
+    //   1,
+    // ),
+    // MapEntry(
+    //   Product(
+    //     id: '2',
+    //     name: 'Cachaça 2',
+    //     description: 'Descrição da cachaça 2',
+    //     image: 'assets/img/matuta.jpeg',
+    //     category: 'Recomendados',
+    //     price: 50.25,
+    //     stock: 2,
+    //   ),
+    //   2,
+    // ),
+    // MapEntry(
+    //   Product(
+    //     id: '3',
+    //     name: 'Cachaça 3',
+    //     description: 'Descrição da cachaça 3',
+    //     category: "Prata",
+    //     image: 'assets/img/sagatiba.jpeg',
+    //     price: 25.25,
+    //     stock: 2,
+    //   ),
+    //   3,
+    // ),
   ];
 
   bool _isLoadingProducts = false;
 
   bool get isEmpty => _cartEntries.isEmpty;
   int get count => _cartEntries.length;
+  int get aggregatedQuantity => _cartEntries.fold(
+        0,
+        (total, entry) => total + entry.value.toInt(),
+      );
   Map<Product, double> get cartEntries => Map.fromEntries(_cartEntries);
   double get subtotal => _cartEntries.fold(
         0,

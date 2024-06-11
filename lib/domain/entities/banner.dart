@@ -5,13 +5,11 @@ class Banner_class {
   final String image;
   final String category;
 
-
   Banner_class({
     required this.id,
     required this.name,
     required this.description,
     required this.category,
     required this.image,
- 
   });
 }
