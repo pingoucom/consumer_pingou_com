@@ -20,7 +20,7 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
         radius: 24,
         backgroundColor: Colors.black,
         child: Image.asset(
-          'assets/img/pingou-logo.png',
+          'assets/img/logo.png',
           height: 24,
         ),
       ),

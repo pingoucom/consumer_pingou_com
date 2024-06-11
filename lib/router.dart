@@ -3,7 +3,7 @@ part of 'main.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/store',
+  initialLocation: '/splash',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
@@ -17,6 +17,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/auth/local/sign-up',
       builder: (context, state) => const LocalSignUpScreen(),
+    ),
+    GoRoute(
+      path: '/splash',
+      builder: (context, state) => const Splash(),
     ),
     GoRoute(
       path: '/onboarding/plan',

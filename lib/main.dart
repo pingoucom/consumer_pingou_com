@@ -27,6 +27,7 @@ import 'package:consumer_pingou_com/presentation/screens/home/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/address_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';
+import 'package:consumer_pingou_com/presentation/screens/splash.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/show/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';
