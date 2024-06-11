@@ -9,7 +9,11 @@ class _BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       // Add a GestureDetector for click handling
-      onTap: () => GoRouter.of(context).push('/auth/local/sign-up'),
+      onTap: () {
+        final storeProvider = context.read<StoreProvider>();
+        storeProvider.setSelectedProductTag(banner.tag);
+        GoRouter.of(context).replace('/store');
+      },
       child: Container(
         decoration: BoxDecoration(
           color: const Color(0xFFF6F0E7),
