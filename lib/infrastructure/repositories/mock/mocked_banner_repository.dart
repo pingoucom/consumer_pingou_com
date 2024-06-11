@@ -14,6 +14,12 @@ class MockedBannerRepository implements BannerRepository {
       description: 'Logo da 51',
       image: 'assets/img/banner2.png',
       category: 'Para Você',
+      tag: ProductTag(
+        id: '1',
+        slug: 'white',
+        name: 'Brancas',
+        iconId: 'star',
+      ),
     ),
     Banner_class(
       id: '2',
@@ -21,6 +27,12 @@ class MockedBannerRepository implements BannerRepository {
       description: 'Tem cabare essa noite',
       image: 'assets/img/banner3.jpeg',
       category: 'Para Você',
+      tag: ProductTag(
+        id: '2',
+        slug: 'new',
+        name: 'Novas',
+        iconId: 'new_releases',
+      ),
     ),
     Banner_class(
       id: '3',
@@ -28,6 +40,12 @@ class MockedBannerRepository implements BannerRepository {
       description: 'familia 51',
       image: 'assets/img/banner6.jpeg',
       category: 'Novidades',
+      tag: ProductTag(
+        id: '3',
+        slug: 'regional',
+        name: 'Regionais',
+        iconId: 'map',
+      ),
     ),
   ];
 
@@ -42,13 +60,13 @@ class MockedBannerRepository implements BannerRepository {
       id: '2',
       name: 'Novos',
       slug: 'new',
-      iconId: 'map',
+      iconId: 'new_releases',
     ),
     ProductTag(
       id: '3',
       name: 'Regionais',
       slug: 'regional',
-      iconId: 'sunny',
+      iconId: 'map',
     ),
     ProductTag(
       id: '4',
