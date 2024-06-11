@@ -25,7 +25,7 @@ class CartScreen extends StatelessWidget {
         ),
         TextSpan(text: ' o que queria?'),
       ],
-      title: 'Carrinho',
+      title: const Text('Carrinho'),
       children: [
         _CartContent(),
       ],

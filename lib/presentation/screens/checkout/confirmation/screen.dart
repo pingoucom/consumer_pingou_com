@@ -2,6 +2,7 @@ import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/order_provider.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bannered_bottom_less_screen_layout.dart';
 import 'package:consumer_pingou_com/presentation/partials/address/address_card.dart';
 import 'package:consumer_pingou_com/presentation/partials/credit_card/credit_card_card.dart';
@@ -30,7 +31,7 @@ class ConfirmationScreen extends StatelessWidget {
         ),
         TextSpan(text: '!'),
       ],
-      title: 'Confirmação',
+      title: const Text('Confirmação'),
       children: [
         _CheckoutData(),
       ],
@@ -178,7 +179,36 @@ class _SubtotalDisplay extends StatelessWidget {
   }
 }
 
-class _ConfirmationButton extends StatelessWidget {
+class _ConfirmationButton extends StatefulWidget {
+  @override
+  State<_ConfirmationButton> createState() => _ConfirmationButtonState();
+}
+
+class _ConfirmationButtonState extends State<_ConfirmationButton> {
+  bool _isConfirming = false;
+
+  void _confirm(BuildContext context) async {
+    setState(() {
+      _isConfirming = true;
+    });
+
+    final orderProvider = context.read<OrderProvider>();
+    await orderProvider.add(
+      context.read<CheckoutProvider>().cartEntries,
+      context.read<AddressProvider>().selectedAddress,
+      context.read<CreditCardProvider>().selectedCreditCard,
+    );
+
+    if (!context.mounted) {
+      return;
+    }
+
+    final checkoutProvider = context.read<CheckoutProvider>();
+    checkoutProvider.clear();
+
+    GoRouter.of(context).replace('/store');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -195,8 +225,14 @@ class _ConfirmationButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: ElevatedButton.icon(
-        onPressed: () {},
-        icon: const Icon(Icons.check),
+        onPressed: _isConfirming ? null : () => _confirm(context),
+        icon: _isConfirming
+            ? const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
+            : const Icon(Icons.check),
         label: const Text('Confirmar'),
         style: ElevatedButton.styleFrom(
           foregroundColor: Theme.of(context).colorScheme.onPrimary,

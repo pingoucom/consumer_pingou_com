@@ -1,3 +1,4 @@
+import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
 import 'package:flutter/material.dart';
 
 class DecoratedBanner extends StatelessWidget {
@@ -10,6 +11,48 @@ class DecoratedBanner extends StatelessWidget {
     required this.icon,
     required this.message,
   });
+
+  static Widget skeleton(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 48,
+        bottom: 72,
+        left: 48,
+        right: 48,
+      ),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFF7971E),
+            Color(0xFFFF4E50),
+          ],
+        ),
+      ),
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SkeletonShape(
+                width: 24,
+                height: 24,
+                borderRadius: 12,
+              ),
+              SizedBox(height: 8),
+              SkeletonShape(
+                width: 140,
+                height: 19,
+                borderRadius: 10,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

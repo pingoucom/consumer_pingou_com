@@ -1,4 +1,5 @@
 import 'package:consumer_pingou_com/domain/entities/address.dart';
+import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
 import 'package:flutter/material.dart';
 
 class AddressCard extends StatelessWidget {
@@ -17,6 +18,34 @@ class AddressCard extends StatelessWidget {
     this.trailing,
     this.onTap,
   });
+
+  static Widget skeleton(BuildContext context, Widget? trailing) {
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      child: ListTile(
+        title: const SkeletonShape(
+          height: 16,
+          width: 128,
+          borderRadius: 8,
+        ),
+        subtitle: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: 4),
+            SkeletonShape(
+              height: 16,
+              width: double.infinity,
+              borderRadius: 8,
+            ),
+          ],
+        ),
+        isThreeLine: false,
+        trailing: trailing,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

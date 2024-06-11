@@ -1,4 +1,5 @@
 import 'package:consumer_pingou_com/domain/entities/credit_card.dart';
+import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
 import 'package:consumer_pingou_com/presentation/partials/credit_card/card_brand_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -70,6 +71,36 @@ class CreditCardCard extends StatelessWidget {
             isThreeLine: false,
             trailing: trailing,
           ),
+        ),
+      ),
+    );
+  }
+
+  static skeleton(BuildContext context, Widget? trailing) {
+    return SizedBox(
+      height: 80,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: ListTile(
+          leading: const SkeletonShape(
+            height: 48,
+            width: 48,
+            borderRadius: 24,
+          ),
+          title: const SkeletonShape(
+            height: 16,
+            width: 96,
+            borderRadius: 8,
+          ),
+          subtitle: const SkeletonShape(
+            height: 16,
+            width: 48,
+            borderRadius: 8,
+          ),
+          isThreeLine: false,
+          trailing: trailing,
         ),
       ),
     );

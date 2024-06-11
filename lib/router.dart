@@ -67,5 +67,14 @@ final _router = GoRouter(
       path: '/credit-cards',
       builder: (context, state) => const CreditCardsIndexScreen(),
     ),
+    GoRoute(
+      path: '/orders',
+      builder: (context, state) => const OrdersIndexScreen(),
+    ),
+    GoRoute(
+      path: '/orders/:orderId',
+      builder: (context, state) =>
+          OrderShowScreen(orderId: state.pathParameters['orderId']!),
+    ),
   ],
 );
