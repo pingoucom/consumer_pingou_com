@@ -48,7 +48,7 @@ class _SkipButton extends StatelessWidget {
   void _onPressed(OnboardingProvider onboardingProvider, BuildContext context) {
     onboardingProvider.clearSelectedPlan();
     onboardingProvider.clearCreditCard();
-    GoRouter.of(context).pushReplacement('/onboarding/address');
+    GoRouter.of(context).push('/onboarding/address');
   }
 
   @override

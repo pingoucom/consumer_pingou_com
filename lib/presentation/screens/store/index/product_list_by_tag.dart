@@ -79,8 +79,8 @@ class _ProductListByTag extends StatelessWidget {
                 padding: padding,
                 child: VerticalProductCard(
                   product: product,
-                  onTap: () => GoRouter.of(context)
-                      .pushReplacement('/store/${product.id}'),
+                  onTap: () =>
+                      GoRouter.of(context).push('/store/${product.id}'),
                 ),
               );
             },

@@ -2,6 +2,15 @@ part of 'main.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
+extension GoRouterExtension on GoRouter {
+  Future<void> clearStackAndNavigate(String location) async {
+    while (canPop()) {
+      pop();
+    }
+    await pushReplacement(location);
+  }
+}
+
 final _router = GoRouter(
   initialLocation: '/splash',
   navigatorKey: _rootNavigatorKey,

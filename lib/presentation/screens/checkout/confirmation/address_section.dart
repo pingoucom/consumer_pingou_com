@@ -24,8 +24,7 @@ class _AddressSection extends StatelessWidget {
                     address: addressProvider.selectedAddress,
                     isSelected: false,
                     trailing: IconButton(
-                      onPressed: () =>
-                          GoRouter.of(context).pushReplacement('/addresses'),
+                      onPressed: () => GoRouter.of(context).push('/addresses'),
                       icon: const Icon(Icons.sync_alt),
                     ),
                   ),

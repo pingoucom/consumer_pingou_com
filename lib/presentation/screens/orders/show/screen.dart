@@ -41,7 +41,7 @@ class OrderShowScreen extends StatelessWidget {
         if (snapshot.hasError) {
           GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).pushReplacement('/home');
+              : GoRouter.of(context).push('/home');
 
           return _OrderData.skeleton(context);
         }
@@ -51,7 +51,7 @@ class OrderShowScreen extends StatelessWidget {
         if (order == null) {
           GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).pushReplacement('/home');
+              : GoRouter.of(context).push('/home');
 
           return _OrderData.skeleton(context);
         }

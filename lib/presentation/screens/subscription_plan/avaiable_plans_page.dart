@@ -16,7 +16,7 @@ class AvailablePlansPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).pushReplacement('/home'),
+              : GoRouter.of(context).push('/home'),
         ),
         title: const Text('Pingou!'),
       ),

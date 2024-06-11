@@ -31,7 +31,7 @@ class _OrdersIndexScreenState extends State<OrdersIndexScreen> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).pushReplacement('/home'),
+              : GoRouter.of(context).push('/home'),
         ),
         title: const Text('Pedidos'),
       ),

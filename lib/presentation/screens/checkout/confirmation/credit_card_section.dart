@@ -26,7 +26,7 @@ class _CreditCardSection extends StatelessWidget {
                     isSelected: false,
                     trailing: IconButton(
                       onPressed: () =>
-                          GoRouter.of(context).pushReplacement('/credit-cards'),
+                          GoRouter.of(context).push('/credit-cards'),
                       icon: const Icon(Icons.sync_alt),
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:consumer_pingou_com/infrastructure/providers/address_provider.da
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/order_provider.dart';
+import 'package:consumer_pingou_com/main.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bannered_bottom_less_screen_layout.dart';
 import 'package:consumer_pingou_com/presentation/partials/address/address_card.dart';
 import 'package:consumer_pingou_com/presentation/partials/credit_card/credit_card_card.dart';
@@ -206,7 +207,7 @@ class _ConfirmationButtonState extends State<_ConfirmationButton> {
     final checkoutProvider = context.read<CheckoutProvider>();
     checkoutProvider.clear();
 
-    GoRouter.of(context).replace('/store');
+    GoRouter.of(context).clearStackAndNavigate('/store');
   }
 
   @override

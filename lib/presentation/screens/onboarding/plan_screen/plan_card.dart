@@ -175,7 +175,7 @@ class _ChoosePlanButton extends StatelessWidget {
 
   void _onPressed(OnboardingProvider onboardingProvider, BuildContext context) {
     onboardingProvider.setSelectedPlan(plan);
-    GoRouter.of(context).pushReplacement('/onboarding/credit-card');
+    GoRouter.of(context).push('/onboarding/credit-card');
   }
 
   @override

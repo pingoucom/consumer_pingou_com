@@ -97,8 +97,7 @@ class _DynamicCartFloatingActionButton extends StatelessWidget {
         return checkoutProvider.isEmpty
             ? const SizedBox.shrink()
             : IconButton(
-                onPressed: () =>
-                    GoRouter.of(context).pushReplacement('/checkout/cart'),
+                onPressed: () => GoRouter.of(context).push('/checkout/cart'),
                 icon: Badge(
                   offset: const Offset(12, -12),
                   label: Text(checkoutProvider.aggregatedQuantity.toString()),
