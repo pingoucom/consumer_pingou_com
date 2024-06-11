@@ -15,9 +15,9 @@ class SubscriptionBanner extends StatelessWidget {
         leading: Container(
           margin: const EdgeInsets.symmetric(vertical: 12),
           child: Image.asset(
-            'assets/img/pingou-logo.png',
-            height: 24,
-            width: 24,
+            'assets/img/logo.png',
+            height: 50,
+            width: 50,
             fit: BoxFit.contain,
           ),
         ),

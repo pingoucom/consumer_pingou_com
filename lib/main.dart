@@ -19,6 +19,7 @@ import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_cred
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_order_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_plan_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_product_repository.dart';
+import 'package:consumer_pingou_com/presentation/layouts/nav_bar.dart';
 import 'package:consumer_pingou_com/presentation/screens/addresses/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';
@@ -32,6 +33,7 @@ import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/orders/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/orders/show/screen.dart';
+import 'package:consumer_pingou_com/presentation/screens/splash.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/show/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';

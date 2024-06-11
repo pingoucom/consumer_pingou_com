@@ -1,6 +1,7 @@
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/decorated_banner.dart';
 import 'package:consumer_pingou_com/presentation/components/my_bottom_bar.dart';
+import 'package:consumer_pingou_com/presentation/layouts/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -27,18 +28,16 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       appBar: AppBar(
-        leading: Container(
-          margin: const EdgeInsets.symmetric(vertical: 12),
+        leading: SizedBox(
+          height: 50, // Altura desejada
+          width: 50, // Largura desejada
           child: Image.asset(
-            'assets/img/pingou-logo.png',
-            height: 24,
-            width: 24,
+            'assets/img/logo.png',
             fit: BoxFit.contain,
           ),
         ),
         title: const Text('Pingou!'),
       ),
-      bottomNavigationBar: MyBottomNavigationBar(),
       floatingActionButton: _DynamicCartFloatingActionButton(),
       body: CustomScrollView(
         slivers: [
