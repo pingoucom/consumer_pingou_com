@@ -24,7 +24,8 @@ class StoreShowScreen extends StatelessWidget {
     final storeProvider = context.read<StoreProvider>();
 
     return FutureBuilder<ProductDetails>(
-      future: storeProvider.findProductAndRelated(productId),
+      future: storeProvider.findProduct(
+          productId), // Altere para o método que busca apenas o produto
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return _ProductDisplay.skeleton(context);

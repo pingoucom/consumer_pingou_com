@@ -22,6 +22,7 @@ import 'package:consumer_pingou_com/infrastructure/repositories/rest/addresses/r
 import 'package:consumer_pingou_com/infrastructure/repositories/rest/authentication/rest_authentication_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/rest/credit_cards/rest_credit_card_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/rest/plans/rest_plan_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/product/rest_product_repository.dart';
 import 'package:consumer_pingou_com/presentation/screens/addresses/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';

@@ -42,7 +42,7 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
       ),
       floatingActionButton: _DynamicCartFloatingActionButton(),
       bottomNavigationBar: MyBottomNavigationBar(
-        selectedIndex: bottomBarIndex,
+        selectedIndex: 0,
       ),
       body: CustomScrollView(
         slivers: [

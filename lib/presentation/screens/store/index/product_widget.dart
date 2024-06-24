@@ -24,6 +24,9 @@ class _ProductWidget extends StatelessWidget {
               child: Image.asset(
                 product.image,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset('assets/img/placeholder.png');
+                },
               ),
             ),
             Padding(

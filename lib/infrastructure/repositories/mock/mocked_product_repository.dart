@@ -513,4 +513,16 @@ class MockedProductRepository implements ProductRepository {
       },
     );
   }
+
+  @override
+  getAllProducts() {
+    // TODO: implement getAllProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Product> findProduct({required String productId}) {
+    // TODO: implement findProduct
+    throw UnimplementedError();
+  }
 }

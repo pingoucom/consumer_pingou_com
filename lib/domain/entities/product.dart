@@ -13,7 +13,7 @@ class Product {
     required this.name,
     required this.description,
     required this.category,
-    required this.image,
+    this.image = '',
     required this.price,
     required this.stock,
     this.tagIds = const [],
