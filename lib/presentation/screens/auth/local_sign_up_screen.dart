@@ -31,6 +31,19 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
       return;
     }
 
+    DateTime? birthDate;
+    try {
+      birthDate = DateFormat.yMMMEd('pt_BR').parse(birthDateController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Data de nascimento inválida'),
+        ),
+      );
+
+      return;
+    }
+
     setState(() => _isSubmitting = true);
 
     final authenticationProvider = context.read<AuthenticationProvider>();
@@ -39,7 +52,7 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
       emailController.text,
       passwordController.text,
       phoneController.text,
-      DateFormat.yMMMEd('pt_BR').parse(birthDateController.text),
+      birthDate,
     );
 
     if (!context.mounted) {
