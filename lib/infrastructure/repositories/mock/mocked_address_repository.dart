@@ -55,13 +55,13 @@ class MockedAddressRepository implements AddressRepository {
   }
 
   @override
-  Future<Address> update(String id, AddressInput input) async {
+  Future<Address> update(Address address, AddressInput input) async {
     int delayInMilliseconds = 1000 + _random.nextInt(2000);
 
     return Future.delayed(
       Duration(milliseconds: delayInMilliseconds),
       () => Address(
-        id: id,
+        id: address.id,
         street: input.street,
         number: input.number,
         neighborhood: input.neighborhood,

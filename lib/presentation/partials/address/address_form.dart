@@ -3,6 +3,7 @@ import 'package:consumer_pingou_com/domain/dto/postal_code_query_result.dart';
 import 'package:consumer_pingou_com/domain/entities/address.dart';
 import 'package:consumer_pingou_com/domain/enums/address_state.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/authentication_provider.dart';
 import 'package:consumer_pingou_com/presentation/validators/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -133,7 +134,12 @@ class AddressFormState extends State<AddressForm> {
       _isSubmitting = true;
     });
 
+    final authenticationProvider = context.read<AuthenticationProvider>();
+
     await widget.onAddressSubmitted!(AddressInput(
+      userId: authenticationProvider.user != null
+          ? authenticationProvider.user!.id
+          : '1',
       postalCode: _postalCodeFieldController.text,
       street: _streetFieldController.text,
       number: _numberFieldController.text,

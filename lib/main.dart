@@ -1,10 +1,12 @@
 import 'package:consumer_pingou_com/domain/repositories/address_repository.dart';
+import 'package:consumer_pingou_com/domain/repositories/authentication_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/banner_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/credit_card_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/order_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/plan_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/authentication_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_provider.dart';
@@ -13,16 +15,16 @@ import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider
 import 'package:consumer_pingou_com/infrastructure/providers/order_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/subscription_provider.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_address_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_banner_repository.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_credit_card_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_order_repository.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_plan_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_product_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/addresses/rest_address_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/authentication/rest_authentication_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/credit_cards/rest_credit_card_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/plans/rest_plan_repository.dart';
 import 'package:consumer_pingou_com/presentation/screens/addresses/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/auth/sign_in_options_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/checkout/cart/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/checkout/confirmation/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/credit_cards/index/screen.dart';
@@ -57,6 +59,11 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => AddressProvider(
             resolve<AddressRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthenticationProvider(
+            resolve<AuthenticationRepository>(),
           ),
         ),
         ChangeNotifierProvider(

@@ -3,9 +3,10 @@ part of 'main.dart';
 var _resolvedDependencies = <Type, dynamic>{};
 
 void initializeDependencies() {
-  register<AddressRepository>(MockedAddressRepository());
-  register<CreditCardRepository>(MockedCreditCardRepository());
-  register<PlanRepository>(MockedPlanRepository());
+  register<AddressRepository>(RestAddressRepository());
+  register<AuthenticationRepository>(RestAuthenticationRepository());
+  register<CreditCardRepository>(RestCreditCardRepository());
+  register<PlanRepository>(RestPlanRepository());
   register<ProductRepository>(MockedProductRepository());
   register<OrderRepository>(MockedOrderRepository());
   register<BannerRepository>(MockedBannerRepository());

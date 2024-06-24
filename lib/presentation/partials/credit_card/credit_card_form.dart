@@ -1,8 +1,10 @@
 import 'package:consumer_pingou_com/domain/dto/credit_card_input.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/authentication_provider.dart';
 import 'package:consumer_pingou_com/presentation/validators/credit_card.dart';
 import 'package:consumer_pingou_com/presentation/validators/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 
 class CreditCardForm extends StatefulWidget {
   final Future<void> Function(CreditCardInput)? onCreditCardSubmitted;
@@ -41,7 +43,12 @@ class CreditCardFormState extends State<CreditCardForm> {
       _isSubmitting = true;
     });
 
+    final authenticationProvider = context.read<AuthenticationProvider>();
+
     await widget.onCreditCardSubmitted!(CreditCardInput(
+      userId: authenticationProvider.user != null
+          ? authenticationProvider.user!.id
+          : '1',
       holderName: _holderNameFieldController.text,
       holderDocument: _holderDocumentFieldController.text,
       number: _numberFieldController.text,

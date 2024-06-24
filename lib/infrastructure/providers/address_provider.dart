@@ -76,7 +76,7 @@ class AddressProvider extends ChangeNotifier {
   }
 
   Future<void> update(Address address, AddressInput input) async {
-    final updatedAddress = await _addressRepository.update(address.id, input);
+    final updatedAddress = await _addressRepository.update(address, input);
     _userAddresses[_userAddresses.indexOf(address)] = updatedAddress;
     _selectedAddressId = updatedAddress.id;
     notifyListeners();

@@ -7,5 +7,5 @@ abstract class AddressRepository {
 
   Future<Address> add(AddressInput input);
 
-  Future<Address> update(String id, AddressInput input);
+  Future<Address> update(Address address, AddressInput input);
 }

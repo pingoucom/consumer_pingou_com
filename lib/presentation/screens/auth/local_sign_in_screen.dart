@@ -1,7 +1,10 @@
+import 'package:consumer_pingou_com/infrastructure/providers/authentication_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/labeled_divider.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
+import 'package:consumer_pingou_com/support/str.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class LocalSignInScreen extends StatefulWidget {
   const LocalSignInScreen({super.key});
@@ -12,6 +15,48 @@ class LocalSignInScreen extends StatefulWidget {
 
 class _LocalSignInScreenState extends State<LocalSignInScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  String? _errorMessage;
+
+  bool _isSubmitting = false;
+
+  void _submit(BuildContext context) async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    setState(() => _isSubmitting = true);
+
+    final authenticationProvider = context.read<AuthenticationProvider>();
+    final signedIn = await authenticationProvider.signIn(
+      emailController.text,
+      passwordController.text,
+    );
+
+    if (!context.mounted) {
+      return;
+    }
+
+    setState(() => _isSubmitting = false);
+
+    if (!signedIn) {
+      setState(() => _errorMessage = 'Credenciais inválidas');
+
+      return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+            'Boas-vindas, ${firtLetterUpperCase(authenticationProvider.user!.firstName)}!'),
+      ),
+    );
+
+    GoRouter.of(context).go('/home');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +85,25 @@ class _LocalSignInScreenState extends State<LocalSignInScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                controller: emailController,
+                validator: (value) =>
+                    value!.isEmpty ? 'Campo obrigatório' : null,
+                keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
+                enableSuggestions: false,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'E-mail',
                   hintText: 'Digite seu e-mail',
-                  prefixIcon: Icon(Icons.email),
+                  errorText: _errorMessage,
+                  prefixIcon: const Icon(Icons.email),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
+                controller: passwordController,
+                validator: (value) =>
+                    value!.isEmpty ? 'Campo obrigatório' : null,
                 obscureText: true,
                 autocorrect: false,
                 enableSuggestions: false,
@@ -61,8 +116,14 @@ class _LocalSignInScreenState extends State<LocalSignInScreen> {
               ),
               const SizedBox(height: 16),
               ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.login),
+                onPressed: !_isSubmitting ? () => _submit(context) : null,
+                icon: !_isSubmitting
+                    ? const SizedBox(
+                        height: 16,
+                        width: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.check),
                 label: const Text('Entrar'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Theme.of(context).colorScheme.onPrimary,

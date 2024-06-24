@@ -1,4 +1,5 @@
 class CreditCardInput {
+  final String userId;
   final String holderName;
   final String holderDocument;
   final String number;
@@ -6,6 +7,7 @@ class CreditCardInput {
   final String cvv;
 
   CreditCardInput({
+    required this.userId,
     required this.holderName,
     required this.holderDocument,
     required this.number,
