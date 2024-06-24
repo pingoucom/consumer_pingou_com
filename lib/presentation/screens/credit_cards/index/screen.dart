@@ -21,7 +21,7 @@ class CreditCardsIndexScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).push('/home'),
+              : GoRouter.of(context).push('/store'),
         ),
         title: const Text('Cartões de Crédito'),
       ),

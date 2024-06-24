@@ -27,26 +27,22 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       onTap: (index) {
         switch (index) {
           case 0:
-            GoRouter.of(context).replace('/home');
+            GoRouter.of(context).go('/store');
             break;
           case 1:
-            GoRouter.of(context).replace('/store');
+            GoRouter.of(context).go('/subscription');
             break;
           case 2:
-            GoRouter.of(context).push('/subscription');
-            break;
-          case 3:
-            GoRouter.of(context).push('/orders');
+            GoRouter.of(context).go('/orders');
             break;
           default:
         }
       },
       items: [
-        _buildBottomNavigationBarItem(Icons.home_outlined, 'Home', 0),
-        _buildBottomNavigationBarItem(Icons.store_outlined, 'Loja', 1),
+        _buildBottomNavigationBarItem(Icons.store_outlined, 'Loja', 0),
         _buildBottomNavigationBarItem(
-            Icons.local_drink_outlined, 'Assinatura', 2),
-        _buildBottomNavigationBarItem(Icons.menu_book_outlined, 'Pedidos', 3),
+            Icons.local_drink_outlined, 'Assinatura', 1),
+        _buildBottomNavigationBarItem(Icons.menu_book_outlined, 'Pedidos', 2),
       ],
     );
   }

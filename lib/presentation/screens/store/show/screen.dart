@@ -33,7 +33,7 @@ class StoreShowScreen extends StatelessWidget {
         if (snapshot.hasError) {
           GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).push('/home');
+              : GoRouter.of(context).push('/store');
 
           return _ProductDisplay.skeleton(context);
         }
@@ -43,7 +43,7 @@ class StoreShowScreen extends StatelessWidget {
         if (productDetails == null) {
           GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).push('/home');
+              : GoRouter.of(context).push('/store');
 
           return _ProductDisplay.skeleton(context);
         }

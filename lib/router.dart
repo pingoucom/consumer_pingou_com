@@ -49,10 +49,6 @@ final _router = GoRouter(
           StoreShowScreen(productId: state.pathParameters['productId']!),
     ),
     GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomeIndexScreen(),
-    ),
-    GoRoute(
       path: '/subscription',
       builder: (context, state) => const SubscriptionBanner(),
     ),

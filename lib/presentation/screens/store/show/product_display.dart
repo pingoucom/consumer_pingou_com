@@ -13,7 +13,7 @@ class _ProductDisplay extends StatefulWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).push('/home'),
+              : GoRouter.of(context).push('/store'),
         ),
         title: const SkeletonShape(
           width: 103,
@@ -195,7 +195,7 @@ class _ProductDetailsState extends State<_ProductDisplay> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
-              : GoRouter.of(context).push('/home'),
+              : GoRouter.of(context).push('/store'),
         ),
         title: Text(widget.productDetails.product.name),
       ),

@@ -19,7 +19,7 @@ class AddressScreen extends StatelessWidget {
       return;
     }
 
-    GoRouter.of(context).clearStackAndNavigate('/home');
+    GoRouter.of(context).clearStackAndNavigate('/store');
   }
 
   @override

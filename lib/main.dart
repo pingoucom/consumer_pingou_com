@@ -28,7 +28,6 @@ import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_scre
 import 'package:consumer_pingou_com/presentation/screens/checkout/cart/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/checkout/confirmation/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/credit_cards/index/screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/home/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/address_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/credit_card_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/onboarding/plan_screen/screen.dart';

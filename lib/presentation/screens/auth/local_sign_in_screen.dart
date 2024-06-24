@@ -55,7 +55,7 @@ class _LocalSignInScreenState extends State<LocalSignInScreen> {
       ),
     );
 
-    GoRouter.of(context).go('/home');
+    GoRouter.of(context).go('/store');
   }
 
   @override
