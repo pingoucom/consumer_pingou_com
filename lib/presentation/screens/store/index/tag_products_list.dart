@@ -28,31 +28,22 @@ class _TagProductsList extends StatelessWidget {
           return skeleton(context);
         }
 
-        if (storeProvider.selectedProductTagId != null) {
-          return _SingleTagProductList(
-            products: storeProvider
-                .featuredProductsByTagId[storeProvider.selectedProductTagId!]!,
-          );
-        }
+        return FutureBuilder<List<Product>>(
+          future: storeProvider.findAllProducts(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return skeleton(context); // Show skeleton loader while waiting
+            }
 
-        return ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: storeProvider.featuredProductsByTagId.length,
-          itemBuilder: (context, index) {
-            final tagId =
-                storeProvider.featuredProductsByTagId.keys.elementAt(index);
-            final tag = storeProvider.productTagsById[tagId];
+            if (snapshot.hasError) {
+              return Center(
+                  child:
+                      Text('Error: ${snapshot.error}')); // Handle error state
+            }
 
-            final products = storeProvider.featuredProductsByTagId[tagId];
-
-            EdgeInsets margin = index == 0
-                ? const EdgeInsets.only(top: 8, bottom: 16)
-                : const EdgeInsets.only(bottom: 16);
-
-            return Container(
-              margin: margin,
-              child: _ProductListByTag(tag: tag!, products: products!),
+            List<Product> products = snapshot.data ?? []; // Handle null case
+            return _SingleTagProductList(
+              products: products,
             );
           },
         );

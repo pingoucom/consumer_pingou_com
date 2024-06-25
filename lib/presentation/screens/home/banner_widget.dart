@@ -11,7 +11,6 @@ class _BannerWidget extends StatelessWidget {
       // Add a GestureDetector for click handling
       onTap: () {
         final storeProvider = context.read<StoreProvider>();
-        storeProvider.setSelectedProductTag(banner.tag);
         GoRouter.of(context).replace('/store');
       },
       child: Container(

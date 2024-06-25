@@ -3,7 +3,7 @@ part of 'screen.dart';
 class _ProductWidget extends StatelessWidget {
   final Product product;
 
-  const _ProductWidget({super.key, required this.product});
+  const _ProductWidget({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _ProductWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-                product.image,
+                'assets/img/placeholder.png',
                 fit: BoxFit.cover,
               ),
             ),

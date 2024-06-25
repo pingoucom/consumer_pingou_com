@@ -7,7 +7,7 @@ void initializeDependencies() {
   register<AuthenticationRepository>(RestAuthenticationRepository());
   register<CreditCardRepository>(RestCreditCardRepository());
   register<PlanRepository>(RestPlanRepository());
-  register<ProductRepository>(MockedProductRepository());
+  register<ProductRepository>(RestProductRepository());
   register<OrderRepository>(MockedOrderRepository());
   register<BannerRepository>(MockedBannerRepository());
 }

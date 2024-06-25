@@ -30,7 +30,7 @@ class _TagList extends StatelessWidget {
           return skeleton(context);
         }
 
-        final tags = storeProvider.productTagsById.values;
+        final tags = [];
 
         return ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -46,17 +46,6 @@ class _TagList extends StatelessWidget {
             } else {
               margin = const EdgeInsets.only(right: 4);
             }
-
-            return Container(
-              margin: margin,
-              child: TagChip(
-                tag: tag,
-                onSelected: (selected) => selected
-                    ? storeProvider.setSelectedProductTag(tag)
-                    : storeProvider.clearSelectedProductTag(),
-                selectedTagId: storeProvider.selectedProductTagId,
-              ),
-            );
           },
         );
       },

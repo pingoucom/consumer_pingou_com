@@ -78,7 +78,7 @@ class VerticalProductCard extends StatelessWidget {
           child: Column(
             children: [
               BlurFillingImage(
-                image: AssetImage(product.image),
+                image: AssetImage("assets/img/placeholder.png"),
                 height: 150,
                 width: 180,
               ),

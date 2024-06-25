@@ -68,7 +68,7 @@ class HorizontalProductCard extends StatelessWidget {
       child: Row(
         children: [
           BlurFillingImage(
-            image: AssetImage(product.image),
+            image: AssetImage("assets/img/placeholder.png"),
             height: 96,
             width: 96,
           ),
