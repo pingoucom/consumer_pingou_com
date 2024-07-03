@@ -1,4 +1,4 @@
-part of 'assinatura_screen.dart';
+import 'package:flutter/material.dart';
 
 class Section extends StatelessWidget {
   final String title;

@@ -32,4 +32,8 @@ class SubscriptionProvider with ChangeNotifier {
     _currentPlan = plan;
     notifyListeners();
   }
+
+  SubscriptionPlan get subscription {
+    return _plans.firstWhere((plan) => plan.name == _currentPlan);
+  }
 }

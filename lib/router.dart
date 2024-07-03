@@ -54,7 +54,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/subscription',
-      builder: (context, state) => const SubscriptionBanner(),
+      builder: (context, state) => SubscriptionScreen(),
     ),
     GoRoute(
       path: '/subscription/allPlans',
