@@ -34,4 +34,27 @@ class Validator {
       return null;
     };
   }
+
+  static Rule minLength(int expected) {
+    return (String? value) {
+      if (value == null || value.length < expected) {
+        return 'Essa informação deve ter no mínimo $expected caracteres';
+      }
+
+      return null;
+    };
+  }
+
+  static Rule email() {
+    const pattern = r"^[\d\w_\-\.]+@[\d\w]{2,}(\.[\d\w]{2,})+$";
+    final regex = RegExp(pattern);
+
+    return (String? value) {
+      if (value == null || !regex.hasMatch(value)) {
+        return 'E-mail inválido';
+      }
+
+      return null;
+    };
+  }
 }

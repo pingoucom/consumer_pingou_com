@@ -1,10 +1,12 @@
 import 'package:consumer_pingou_com/domain/repositories/address_repository.dart';
+import 'package:consumer_pingou_com/domain/repositories/authentication_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/banner_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/credit_card_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/order_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/plan_repository.dart';
 import 'package:consumer_pingou_com/domain/repositories/product_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/authentication_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_provider.dart';
@@ -19,6 +21,7 @@ import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_cred
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_order_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_plan_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_product_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_authentication_repository.dart';
 import 'package:consumer_pingou_com/presentation/screens/addresses/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';
@@ -56,6 +59,11 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => AddressProvider(
             resolve<AddressRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthenticationProvider(
+            resolve<AuthenticationRepository>(),
           ),
         ),
         ChangeNotifierProvider(

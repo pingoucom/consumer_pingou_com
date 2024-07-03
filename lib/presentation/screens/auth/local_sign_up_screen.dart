@@ -1,7 +1,10 @@
+import 'package:consumer_pingou_com/infrastructure/providers/authentication_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/labeled_divider.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
+import 'package:consumer_pingou_com/presentation/validators/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class LocalSignUpScreen extends StatefulWidget {
   const LocalSignUpScreen({super.key});
@@ -12,6 +15,42 @@ class LocalSignUpScreen extends StatefulWidget {
 
 class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController();
+
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  bool _isSubmitting = false;
+
+  void _submit() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isSubmitting = true);
+
+    final authenticationProvider = context.read<AuthenticationProvider>();
+    final signedUp = await authenticationProvider.signUp(
+      _nameController.text,
+      _emailController.text,
+      _passwordController.text,
+    );
+
+    setState(() => _isSubmitting = false);
+
+    if (!signedUp) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Dados inválidos para cadastro'),
+          backgroundColor: Colors.red,
+        ),
+      );
+
+      return;
+    }
+
+    GoRouter.of(context).push('/onboarding/plan');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +75,11 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                controller: _nameController,
+                validator: Validator.all([
+                  Validator.required(),
+                  Validator.minLength(3),
+                ]),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Nome',
@@ -45,6 +89,12 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: Validator.all([
+                  Validator.required(),
+                  Validator.email(),
+                ]),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'E-mail',
@@ -54,6 +104,11 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                controller: _passwordController,
+                validator: Validator.all([
+                  Validator.required(),
+                  Validator.minLength(6),
+                ]),
                 obscureText: true,
                 autocorrect: false,
                 enableSuggestions: false,
@@ -66,8 +121,14 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
               ),
               const SizedBox(height: 16),
               ElevatedButton.icon(
-                onPressed: () => GoRouter.of(context).push('/onboarding/plan'),
-                icon: const Icon(Icons.person_add),
+                onPressed: _isSubmitting ? null : _submit,
+                icon: _isSubmitting
+                    ? const SizedBox(
+                        height: 16,
+                        width: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.person_add),
                 label: const Text('Cadastrar'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Theme.of(context).colorScheme.onPrimary,

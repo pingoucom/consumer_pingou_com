@@ -1,7 +1,10 @@
+import 'package:consumer_pingou_com/infrastructure/providers/subscription_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+part 'info_row.dart';
 part 'info_status.dart';
 part 'section.dart';
-part 'info_row.dart';
 
 class AssinaturaScreen extends StatelessWidget {
   @override
@@ -12,11 +15,11 @@ class AssinaturaScreen extends StatelessWidget {
       ),
       body: Consumer<SubscriptionProvider>(
         builder: (context, provider, child) {
-          if (provider.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
+          // if (provider.isLoading) {
+          //   return Center(child: CircularProgressIndicator());
+          // }
 
-          final subscription = provider.subscription;
+          final subscription = null;
 
           if (subscription == null) {
             return Center(child: Text('Failed to load subscription details'));

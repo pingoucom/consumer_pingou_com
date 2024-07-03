@@ -4,6 +4,5 @@ final ThemeData _lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xFFFF7300),
-    primaryContainer: const Color(0xFFFFFFFF),
   ),
 );

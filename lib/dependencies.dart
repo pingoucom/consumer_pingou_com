@@ -4,6 +4,7 @@ var _resolvedDependencies = <Type, dynamic>{};
 
 void initializeDependencies() {
   register<AddressRepository>(MockedAddressRepository());
+  register<AuthenticationRepository>(RestAuthenticationRepository());
   register<CreditCardRepository>(MockedCreditCardRepository());
   register<PlanRepository>(MockedPlanRepository());
   register<ProductRepository>(MockedProductRepository());
