@@ -4,6 +4,7 @@ class SubscriptionPlan {
   final double price;
   final String startDate;
   final bool? is_active;
+  final List<int> cachacas;
 
   SubscriptionPlan({
     required this.name,
@@ -11,5 +12,6 @@ class SubscriptionPlan {
     required this.price,
     required this.startDate,
     required this.is_active,
+    this.cachacas = const [],
   });
 }

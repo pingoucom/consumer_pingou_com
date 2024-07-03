@@ -39,7 +39,6 @@ import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart
 import 'package:consumer_pingou_com/presentation/screens/store/show/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/subscription_plan/subscriptionBanner.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';

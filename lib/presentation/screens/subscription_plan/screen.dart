@@ -13,17 +13,13 @@ class SubscriptionScreen extends StatelessWidget {
       builder: (context, provider, child) {
         final subscription = provider.subscription;
 
-        if (subscription == null) {
-          return Center(child: Text('Failed to load subscription details'));
-        }
-
         return BanneredBottomedScreenLayout(
           bottomBarIndex: 2,
           icon: Icons.room_preferences_outlined,
           message: [
             TextSpan(
               text: 'Plano: ${subscription.name}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
