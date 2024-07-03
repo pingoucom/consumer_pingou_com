@@ -22,7 +22,6 @@ import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_prod
 import 'package:consumer_pingou_com/presentation/screens/addresses/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/auth/sign_in_options_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/checkout/cart/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/checkout/confirmation/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/credit_cards/index/screen.dart';

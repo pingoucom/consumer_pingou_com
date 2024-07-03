@@ -45,7 +45,10 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         _buildBottomNavigationBarItem(Icons.home_outlined, 'Home', 0),
         _buildBottomNavigationBarItem(Icons.store_outlined, 'Loja', 1),
         _buildBottomNavigationBarItem(
-            Icons.local_drink_outlined, 'Assinatura', 2),
+          Icons.local_drink_outlined,
+          'Assinatura',
+          2,
+        ),
         _buildBottomNavigationBarItem(Icons.menu_book_outlined, 'Pedidos', 3),
       ],
     );
@@ -60,11 +63,12 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(15),
           color: widget.selectedIndex == index
-              ? Color(0xFFFAE287)
+              ? const Color(0xFFFF7300)
               : Colors.transparent,
         ),
         child: Icon(
           icon,
+          color: widget.selectedIndex == index ? Colors.white : Colors.black,
           size: 25,
         ),
       ),

@@ -11,12 +11,11 @@ class Splash extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       duration: const Duration(seconds: 5),
       childWidget: SizedBox(
-        height: 600,
-        width: 600,
+        height: 512,
+        width: 512,
         child: Image.asset('assets/img/logo2.png'),
       ),
-      onAnimationEnd: () =>
-          GoRouter.of(context).replace('/auth/sign-in-options'),
+      onAnimationEnd: () => GoRouter.of(context).replace('/auth/local/sign-in'),
     );
   }
 }

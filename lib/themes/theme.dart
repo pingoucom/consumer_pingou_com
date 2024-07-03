@@ -3,7 +3,7 @@ part of '../main.dart';
 final ThemeData _lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
-    seedColor: Colors.amber,
-    onSecondary: Color(0xFFFAE287),
+    seedColor: const Color(0xFFFF7300),
+    primaryContainer: const Color(0xFFFFFFFF),
   ),
 );

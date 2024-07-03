@@ -16,10 +16,6 @@ final _router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
-      path: '/auth/sign-in-options',
-      builder: (context, state) => const SignInOptionsScreen(),
-    ),
-    GoRoute(
       path: '/auth/local/sign-in',
       builder: (context, state) => const LocalSignInScreen(),
     ),

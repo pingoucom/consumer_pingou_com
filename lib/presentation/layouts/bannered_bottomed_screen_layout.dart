@@ -30,11 +30,11 @@ class BanneredBottomedScreenLayout extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       appBar: AppBar(
-        leading: SizedBox(
-          height: 50, // Altura desejada
-          width: 50, // Largura desejada
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Image.asset(
             'assets/img/logo.png',
+            height: 24,
             fit: BoxFit.contain,
           ),
         ),

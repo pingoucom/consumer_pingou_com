@@ -16,13 +16,9 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return BottomSheetScreenLayout(
-      icon: CircleAvatar(
-        radius: 24,
-        backgroundColor: Colors.black,
-        child: Image.asset(
-          'assets/img/logo.png',
-          height: 24,
-        ),
+      icon: Image.asset(
+        'assets/img/logo.png',
+        height: 64,
       ),
       message: const [
         TextSpan(text: 'Que '),
