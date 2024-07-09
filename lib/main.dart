@@ -13,8 +13,8 @@ import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_pr
 import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/order_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/plan_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
-import 'package:consumer_pingou_com/infrastructure/providers/subscription_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_address_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_banner_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_credit_card_repository.dart';
@@ -37,7 +37,6 @@ import 'package:consumer_pingou_com/presentation/screens/orders/show/screen.dart
 import 'package:consumer_pingou_com/presentation/screens/splash.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/store/show/screen.dart';
-import 'package:consumer_pingou_com/presentation/screens/subscription_plan/avaiable_plans_page.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -55,7 +54,6 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SubscriptionProvider()),
         ChangeNotifierProvider(
           create: (_) => AddressProvider(
             resolve<AddressRepository>(),
@@ -64,6 +62,11 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => AuthenticationProvider(
             resolve<AuthenticationRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PlanProvider(
+            resolve<PlanRepository>(),
           ),
         ),
         ChangeNotifierProvider(

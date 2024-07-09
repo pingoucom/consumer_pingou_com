@@ -1,11 +1,11 @@
-import 'package:consumer_pingou_com/domain/entities/subscriptionPlan.dart';
+import 'package:consumer_pingou_com/domain/entities/plan.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/presentation/screens/subscription_plan/info_row.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SubscriptionDetails extends StatelessWidget {
-  final SubscriptionPlan subscription;
+  final Plan subscription;
 
   const SubscriptionDetails({super.key, required this.subscription});
   @override
@@ -105,7 +105,7 @@ class SubscriptionDetails extends StatelessWidget {
       children: [
         InfoRow(
           label: 'Data de Geração do pedido',
-          value: subscription.startDate,
+          value: '08/07/2024',
         ),
         const SizedBox(height: 10),
         InfoRow(
@@ -128,7 +128,7 @@ class SubscriptionDetails extends StatelessWidget {
         const SizedBox(height: 10),
         InfoRow(
           label: 'Plano',
-          value: subscription.name,
+          value: subscription.title,
         ),
         const SizedBox(height: 10),
         InfoRow(

@@ -25,6 +25,7 @@ class MockedPlanRepository implements PlanRepository {
             'Acesso a eventos exclusivos',
             'Descontos em produtos parceiros',
           ],
+          idCachacas: ['1', '2'],
         ),
         Plan(
           id: '2',
@@ -37,6 +38,7 @@ class MockedPlanRepository implements PlanRepository {
             'Acesso a eventos exclusivos',
             'Descontos em produtos parceiros',
           ],
+          idCachacas: ['3'],
         ),
         Plan(
           id: '3',
@@ -49,6 +51,7 @@ class MockedPlanRepository implements PlanRepository {
             'Acesso a eventos exclusivos',
             'Descontos em produtos parceiros',
           ],
+          idCachacas: [],
         ),
       ],
     );
@@ -70,6 +73,7 @@ class MockedPlanRepository implements PlanRepository {
           'Acesso a eventos exclusivos',
           'Descontos em produtos parceiros',
         ],
+        idCachacas: ['1', '2'],
       ),
     );
   }

@@ -12,7 +12,7 @@ extension GoRouterExtension on GoRouter {
 }
 
 final _router = GoRouter(
-  initialLocation: '/splash',
+  initialLocation: '/store',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
@@ -55,10 +55,6 @@ final _router = GoRouter(
     GoRoute(
       path: '/subscription',
       builder: (context, state) => SubscriptionScreen(),
-    ),
-    GoRoute(
-      path: '/subscription/allPlans',
-      builder: (context, state) => const AvailablePlansPage(),
     ),
     GoRoute(
       path: '/checkout/cart',

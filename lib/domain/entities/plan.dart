@@ -7,6 +7,7 @@ class Plan {
   final double semiAnnualPrice;
   final List<String> features;
   final PlanFlag? flag;
+  List<String> idCachacas;
 
   Plan({
     required this.id,
@@ -15,5 +16,6 @@ class Plan {
     required this.semiAnnualPrice,
     required this.features,
     this.flag,
+    this.idCachacas = const [],
   });
 }
