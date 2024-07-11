@@ -22,6 +22,7 @@ class CreditCardProvider extends ChangeNotifier {
     if (_hasLoadedInitialData) return;
 
     final creditCards = await _creditCardRepository.getAll();
+    _userCreditCards.clear();
     _userCreditCards.addAll(creditCards);
 
     if (_userCreditCards.isNotEmpty) {

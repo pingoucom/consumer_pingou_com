@@ -23,6 +23,7 @@ class AddressProvider extends ChangeNotifier {
     if (_hasLoadedInitialData) return;
 
     final addresses = await _addressRepository.getUserAddresses();
+    _userAddresses.clear();
     _userAddresses.addAll(addresses);
 
     if (_userAddresses.isNotEmpty) {
