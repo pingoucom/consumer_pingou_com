@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:consumer_pingou_com/domain/dto/product/product_details.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
@@ -31,6 +33,8 @@ class StoreShowScreen extends StatelessWidget {
         }
 
         if (snapshot.hasError) {
+          log('Error: ${snapshot.error}');
+
           GoRouter.of(context).canPop()
               ? GoRouter.of(context).pop()
               : GoRouter.of(context).push('/home');

@@ -1,6 +1,19 @@
 part of 'screen.dart';
 
-class _CreditCardSection extends StatelessWidget {
+class _CreditCardSection extends StatefulWidget {
+  @override
+  State<_CreditCardSection> createState() => _CreditCardSectionState();
+}
+
+class _CreditCardSectionState extends State<_CreditCardSection> {
+  @override
+  void initState() {
+    super.initState();
+
+    final addressProvider = context.read<CreditCardProvider>();
+    addressProvider.loadInitialData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CreditCardProvider>(
@@ -21,15 +34,27 @@ class _CreditCardSection extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14),
-                  child: CreditCardCard(
-                    creditCard: creditCardProvider.selectedCreditCard,
-                    isSelected: false,
-                    trailing: IconButton(
-                      onPressed: () =>
-                          GoRouter.of(context).push('/credit-cards'),
-                      icon: const Icon(Icons.sync_alt),
-                    ),
-                  ),
+                  child: creditCardProvider.hasLoadedInitialData
+                      ? CreditCardCard(
+                          creditCard: creditCardProvider.selectedCreditCard,
+                          isSelected: false,
+                          trailing: IconButton(
+                            onPressed: () =>
+                                GoRouter.of(context).push('/credit-cards'),
+                            icon: const Icon(Icons.sync_alt),
+                          ),
+                        )
+                      : CreditCardCard.skeleton(
+                          context,
+                          const Padding(
+                            padding: EdgeInsets.only(right: 8),
+                            child: SkeletonShape(
+                              width: 40,
+                              height: 40,
+                              borderRadius: 20,
+                            ),
+                          ),
+                        ),
                 ),
               ),
             ],

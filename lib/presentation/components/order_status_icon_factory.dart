@@ -36,19 +36,15 @@ class OrderStatusIconFactory {
 
   static IconData make(OrderStatus orderStatus) {
     switch (orderStatus) {
-      case OrderStatus.received:
+      case OrderStatus.created:
         return _makeReceivedIcon();
       case OrderStatus.confirmed:
         return _makeConfirmedIcon();
-      case OrderStatus.preparing:
-        return _makePreparingIcon();
-      case OrderStatus.ready:
-        return _makeReadyIcon();
-      case OrderStatus.onTheWay:
+      case OrderStatus.shipped:
         return _makeOnTheWayIcon();
       case OrderStatus.delivered:
         return _makeDeliveredIcon();
-      case OrderStatus.canceled:
+      case OrderStatus.cancelled:
         return _makeCanceledIcon();
       default:
         return _makeErrorIcon();

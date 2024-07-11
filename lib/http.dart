@@ -20,4 +20,14 @@ class HttpRequestExecutor {
 
     return response;
   }
+
+  static HttpClientRequest prepareRequest(HttpClientRequest request) {
+    if (_token == null) {
+      throw Exception('Token not set');
+    }
+
+    request.headers.add('Authorization', 'Bearer $_token');
+
+    return request;
+  }
 }

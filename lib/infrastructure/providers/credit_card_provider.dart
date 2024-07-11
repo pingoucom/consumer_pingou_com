@@ -1,6 +1,5 @@
 import 'package:consumer_pingou_com/domain/dto/credit_card_input.dart';
 import 'package:consumer_pingou_com/domain/entities/credit_card.dart';
-import 'package:consumer_pingou_com/domain/enums/card_brand.dart';
 import 'package:consumer_pingou_com/domain/repositories/credit_card_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -9,33 +8,29 @@ class CreditCardProvider extends ChangeNotifier {
 
   CreditCardProvider(this._creditCardRepository);
 
-  final List<CreditCard> _userCreditCards = [
-    CreditCard(
-      id: '1',
-      brand: CardBrand.elo,
-      lastFourDigits: '4321',
-      holderFirstName: 'Lorem',
-    ),
-    CreditCard(
-      id: '2',
-      brand: CardBrand.mastercard,
-      lastFourDigits: '1234',
-      holderFirstName: 'John',
-    ),
-    CreditCard(
-      id: '3',
-      brand: CardBrand.visa,
-      lastFourDigits: '5678',
-      holderFirstName: 'Jane',
-    ),
-  ];
-
-  String _selectedCreditCardId = '1';
+  final List<CreditCard> _userCreditCards = [];
+  bool _hasLoadedInitialData = false;
+  String? _selectedCreditCardId;
 
   List<CreditCard> get userCreditCards => List.unmodifiable(_userCreditCards);
+  bool get hasLoadedInitialData => _hasLoadedInitialData;
   CreditCard get selectedCreditCard => _userCreditCards
       .firstWhere((creditCard) => creditCard.id == _selectedCreditCardId);
-  String get selectedCreditCardId => _selectedCreditCardId;
+  String? get selectedCreditCardId => _selectedCreditCardId;
+
+  void loadInitialData() async {
+    if (_hasLoadedInitialData) return;
+
+    final creditCards = await _creditCardRepository.getAll();
+    _userCreditCards.addAll(creditCards);
+
+    if (_userCreditCards.isNotEmpty) {
+      _selectedCreditCardId = _userCreditCards.first.id;
+    }
+
+    _hasLoadedInitialData = true;
+    notifyListeners();
+  }
 
   void setSelectedCreditCard(CreditCard creditCard) {
     if (creditCard.id == _selectedCreditCardId) {
@@ -46,10 +41,12 @@ class CreditCardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteCreditCard(CreditCard creditCard) {
+  Future<void> deleteCreditCard(CreditCard creditCard) async {
     if (_userCreditCards.length == 1) {
       return;
     }
+
+    await _creditCardRepository.delete(creditCard.id);
 
     final oldIndex = _userCreditCards.indexOf(creditCard);
     _userCreditCards.remove(creditCard);

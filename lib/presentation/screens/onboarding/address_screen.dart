@@ -1,8 +1,10 @@
+import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
 import 'package:consumer_pingou_com/main.dart';
 import 'package:consumer_pingou_com/presentation/layouts/bottom_sheet_screen_layout.dart';
 import 'package:consumer_pingou_com/presentation/partials/address/address_form.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class AddressScreen extends StatelessWidget {
   const AddressScreen({super.key});
@@ -25,8 +27,14 @@ class AddressScreen extends StatelessWidget {
       ],
       children: [
         AddressForm(
-          onAddressSubmitted: (_) =>
-              GoRouter.of(context).clearStackAndNavigate('/home'),
+          onAddressSubmitted: (addressInput) async {
+            final addressProvider = context.read<AddressProvider>();
+            await addressProvider.add(addressInput);
+
+            if (context.mounted) {
+              GoRouter.of(context).clearStackAndNavigate('/home');
+            }
+          },
         ),
       ],
     );

@@ -205,7 +205,7 @@ class _ProductDetailsState extends State<_ProductDisplay> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BlurFillingImage(
-              image: AssetImage(widget.productDetails.product.image),
+              image: NetworkImage(widget.productDetails.product.image),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width,
             ),

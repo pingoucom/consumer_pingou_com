@@ -3,16 +3,16 @@ part of 'main.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 extension GoRouterExtension on GoRouter {
-  Future<void> clearStackAndNavigate(String location) async {
+  Future<void> clearStackAndNavigate(String location, {Object? extra}) async {
     while (canPop()) {
       pop();
     }
-    await pushReplacement(location);
+    await pushReplacement(location, extra: extra);
   }
 }
 
 final _router = GoRouter(
-  initialLocation: '/store',
+  initialLocation: '/auth/local/sign-in',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
@@ -41,7 +41,12 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/store',
-      builder: (context, state) => const StoreIndexScreen(),
+      builder: (context, state) {
+        Map<String, String> extra =
+            state.extra != null ? state.extra as Map<String, String> : {};
+
+        return StoreIndexScreen(selectedTagId: extra['tagId']);
+      },
     ),
     GoRoute(
       path: '/store/:productId',
@@ -54,7 +59,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/subscription',
-      builder: (context, state) => SubscriptionScreen(),
+      builder: (context, state) => const SubscriptionScreen(),
     ),
     GoRoute(
       path: '/checkout/cart',

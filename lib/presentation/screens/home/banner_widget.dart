@@ -8,11 +8,12 @@ class _BannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // Add a GestureDetector for click handling
       onTap: () {
-        final storeProvider = context.read<StoreProvider>();
-        storeProvider.setSelectedProductTag(banner.tag);
-        GoRouter.of(context).replace('/store');
+        log('going to ${banner.deeplink}');
+        final uri = Uri.parse(banner.deeplink);
+
+        GoRouter.of(context)
+            .clearStackAndNavigate(uri.path, extra: uri.queryParameters);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -25,7 +26,7 @@ class _BannerWidget extends StatelessWidget {
           width: 380,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.asset(
+            child: Image.network(
               banner.image,
               fit: BoxFit.cover,
             ),

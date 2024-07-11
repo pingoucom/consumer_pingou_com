@@ -8,4 +8,8 @@ abstract class AddressRepository {
   Future<Address> add(AddressInput input);
 
   Future<Address> update(String id, AddressInput input);
+
+  Future<List<Address>> getUserAddresses();
+
+  Future<void> delete(String id);
 }

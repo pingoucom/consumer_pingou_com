@@ -21,7 +21,7 @@ class SubscriptionDetails extends StatelessWidget {
               children: [
                 Text(
                   'Detalhes da Assinatura',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 const SizedBox(height: 16),
                 _buildSelectionTile(context),

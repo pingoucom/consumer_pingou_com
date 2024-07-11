@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:consumer_pingou_com/domain/entities/banner.dart';
-import 'package:consumer_pingou_com/domain/entities/product_tag.dart';
 import 'package:consumer_pingou_com/domain/repositories/banner_repository.dart';
 
 class MockedBannerRepository implements BannerRepository {
@@ -10,69 +9,21 @@ class MockedBannerRepository implements BannerRepository {
   final List<Banner_class> _banners = [
     Banner_class(
       id: '1',
-      name: '51',
-      description: 'Logo da 51',
       image: 'assets/img/banner2.png',
       category: 'Para Você',
-      tag: ProductTag(
-        id: '1',
-        slug: 'white',
-        name: 'Brancas',
-        iconId: 'star',
-      ),
+      deeplink: '/store?tagId=1',
     ),
     Banner_class(
       id: '2',
-      name: 'Banner 2',
-      description: 'Tem cabare essa noite',
       image: 'assets/img/banner3.jpeg',
       category: 'Para Você',
-      tag: ProductTag(
-        id: '2',
-        slug: 'new',
-        name: 'Novas',
-        iconId: 'new_releases',
-      ),
+      deeplink: '/store?tagId=2',
     ),
     Banner_class(
       id: '3',
-      name: 'Banner 3',
-      description: 'familia 51',
       image: 'assets/img/banner6.jpeg',
       category: 'Novidades',
-      tag: ProductTag(
-        id: '3',
-        slug: 'regional',
-        name: 'Regionais',
-        iconId: 'map',
-      ),
-    ),
-  ];
-
-  final List<ProductTag> _featuredProductTags = [
-    ProductTag(
-      id: '1',
-      name: 'Recomendados',
-      slug: 'recommended',
-      iconId: 'new_releases',
-    ),
-    ProductTag(
-      id: '2',
-      name: 'Novos',
-      slug: 'new',
-      iconId: 'new_releases',
-    ),
-    ProductTag(
-      id: '3',
-      name: 'Regionais',
-      slug: 'regional',
-      iconId: 'map',
-    ),
-    ProductTag(
-      id: '4',
-      name: 'Promoções',
-      slug: 'yellow',
-      iconId: 'local_offer',
+      deeplink: '/store?tagId=3',
     ),
   ];
 
@@ -83,16 +34,6 @@ class MockedBannerRepository implements BannerRepository {
     return Future.delayed(
       Duration(milliseconds: delayInMilliseconds),
       () => _banners,
-    );
-  }
-
-  @override
-  Future<List<ProductTag>> getFeaturedBannerTags() async {
-    int delayInMilliseconds = 1000 + _random.nextInt(2000);
-
-    return Future.delayed(
-      Duration(milliseconds: delayInMilliseconds),
-      () => _featuredProductTags,
     );
   }
 }

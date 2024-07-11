@@ -21,7 +21,7 @@ class _ProductWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
+              child: Image.network(
                 product.image,
                 fit: BoxFit.cover,
               ),

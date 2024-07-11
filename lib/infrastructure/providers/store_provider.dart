@@ -26,12 +26,12 @@ class StoreProvider extends ChangeNotifier {
     return _lastProductIdsByTagId[tagId] != null;
   }
 
-  void setSelectedProductTag(ProductTag productTag) {
-    if (productTag.id == _selectedProductTagId) {
+  void setSelectedProductTag(String tagId) {
+    if (tagId == _selectedProductTagId) {
       return;
     }
 
-    _selectedProductTagId = productTag.id;
+    _selectedProductTagId = tagId;
     notifyListeners();
   }
 
@@ -40,28 +40,7 @@ class StoreProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadMoreFeaturedProductsForTagId(String tagId) async {
-    if (!hasMoreFeaturedProductsToLoad(tagId)) return;
-
-    final lastProductId = _lastProductIdsByTagId[tagId];
-    if (lastProductId == null) return;
-
-    final products = await _productRepository.getFeaturedProducts(
-      tagIds: [tagId],
-      lastProductId: lastProductId,
-    );
-
-    if (products.isNotEmpty) {
-      _featuredProductsByTagId[tagId]!.addAll(products);
-      _lastProductIdsByTagId[tagId] = products.last.id;
-    } else {
-      _lastProductIdsByTagId[tagId] = null;
-    }
-
-    notifyListeners();
-  }
-
-  void loadInitialData() async {
+  Future<void> loadInitialData() async {
     if (_hasLoadedInitialData) return;
 
     final loadedProductTags = await _productRepository.getProductTags();
@@ -98,5 +77,9 @@ class StoreProvider extends ChangeNotifier {
     return _productRepository.findProductAndRelated(
       productId: productId,
     );
+  }
+
+  Future<List<Product>> getProductsById(List<String> productIds) {
+    return _productRepository.getProductsById(productIds);
   }
 }

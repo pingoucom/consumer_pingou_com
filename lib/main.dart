@@ -10,18 +10,17 @@ import 'package:consumer_pingou_com/infrastructure/providers/authentication_prov
 import 'package:consumer_pingou_com/infrastructure/providers/checkout_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/homeBannerScreen_provider.dart';
-import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/onboarding_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/order_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/plan_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_address_repository.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_banner_repository.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_credit_card_repository.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_order_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_plan_repository.dart';
-import 'package:consumer_pingou_com/infrastructure/repositories/mock/mocked_product_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_address_repository.dart';
 import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_authentication_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_banner_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_credit_card_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_order_repository.dart';
+import 'package:consumer_pingou_com/infrastructure/repositories/rest/rest_product_repository.dart';
 import 'package:consumer_pingou_com/presentation/screens/addresses/index/screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_in_screen.dart';
 import 'package:consumer_pingou_com/presentation/screens/auth/local_sign_up_screen.dart';
@@ -97,11 +96,6 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => OrderProvider(
             resolve<OrderRepository>(),
-          ),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => HomeScreenProvider(
-            resolve<ProductRepository>(),
           ),
         ),
       ],

@@ -5,16 +5,51 @@ class _AddressList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AddressProvider>(
       builder: (context, addressProvider, _) {
+        if (!addressProvider.hasLoadedInitialData) {
+          return ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, index) => _AddressItem.skeleton(context),
+          );
+        }
+
+        if (addressProvider.userAddresses.isEmpty) {
+          return _EmptyState();
+        }
+
         return ListView.builder(
           scrollDirection: Axis.vertical,
           itemCount: addressProvider.userAddresses.length,
           itemBuilder: (context, index) => _AddressItem(
             address: addressProvider.userAddresses.elementAt(index),
-            selectedAddressId: addressProvider.selectedAddressId,
+            selectedAddressId: addressProvider.selectedAddressId!,
             length: addressProvider.userAddresses.length,
           ),
         );
       },
+    );
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.close,
+              size: 32,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+            ),
+            Text(
+              'Você ainda não tem endereços.',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -29,6 +64,20 @@ class _AddressItem extends StatelessWidget {
     required this.selectedAddressId,
     required this.length,
   });
+
+  static Widget skeleton(BuildContext context) {
+    return AddressCard.skeleton(
+      context,
+      const Padding(
+        padding: EdgeInsets.only(right: 8),
+        child: SkeletonShape(
+          width: 40,
+          height: 40,
+          borderRadius: 20,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +130,8 @@ class _AddressOptionsMenu extends StatelessWidget {
           ),
         ),
         PopupMenuItem(
-          onTap: () async {
-            context.read<AddressProvider>().deleteAddress(address);
-          },
+          onTap: () async =>
+              await context.read<AddressProvider>().deleteAddress(address),
           child: const Row(
             children: [
               Icon(Icons.delete),

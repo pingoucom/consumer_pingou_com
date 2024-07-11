@@ -16,7 +16,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/sagatiba.jpeg',
       category: 'Recomendados',
       price: 25.25,
-      stock: 2,
     ),
     Product(
       id: '2',
@@ -25,7 +24,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/matuta.jpeg',
       category: 'Recomendados',
       price: 50.25,
-      stock: 2,
     ),
     Product(
       id: '3',
@@ -34,7 +32,6 @@ class MockedProductRepository implements ProductRepository {
       category: "Prata",
       image: 'assets/img/sagatiba.jpeg',
       price: 25.25,
-      stock: 2,
     ),
     Product(
       id: '4',
@@ -43,7 +40,6 @@ class MockedProductRepository implements ProductRepository {
       category: "Dourada",
       image: 'assets/img/matuta.jpeg',
       price: 50.25,
-      stock: 2,
     ),
   ];
 
@@ -94,7 +90,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_0.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '6',
         '2',
@@ -108,7 +103,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_1.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '3',
         '6',
@@ -122,7 +116,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_2.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '6',
         '5',
@@ -136,7 +129,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_3.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '6',
         '1',
@@ -150,7 +142,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_4.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '2',
         '6',
@@ -164,7 +155,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_5.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '2',
         '3',
@@ -178,7 +168,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_6.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '3',
         '2',
@@ -192,7 +181,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_7.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '4',
         '6',
@@ -206,7 +194,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_8.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '6',
         '4',
@@ -220,7 +207,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_9.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '4',
         '6',
@@ -234,7 +220,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_10.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '6',
         '1',
@@ -248,7 +233,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_11.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '1',
         '6',
@@ -262,7 +246,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_12.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '1',
         '5',
@@ -276,7 +259,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_13.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '4',
         '1',
@@ -290,7 +272,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_14.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '5',
         '2',
@@ -304,7 +285,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_15.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '2',
         '4',
@@ -318,7 +298,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_16.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '3',
         '1',
@@ -332,7 +311,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_17.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '1',
         '4',
@@ -346,7 +324,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_18.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '1',
         '2',
@@ -360,7 +337,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_19.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '2',
         '4',
@@ -374,7 +350,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_20.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '3',
         '4',
@@ -388,7 +363,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_21.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '5',
         '1',
@@ -402,7 +376,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_22.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '6',
         '4',
@@ -416,7 +389,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_23.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '1',
         '2',
@@ -430,7 +402,6 @@ class MockedProductRepository implements ProductRepository {
       image: 'assets/img/products/sample_product_24.jpeg',
       category: '1',
       price: 25.25,
-      stock: 2,
       tagIds: [
         '1',
         '3',
@@ -438,16 +409,6 @@ class MockedProductRepository implements ProductRepository {
       ],
     ),
   ];
-
-  @override
-  Future<List<Product>> getAvailableProducts() async {
-    int delayInMilliseconds = 1000 + _random.nextInt(2000);
-
-    return Future.delayed(
-      Duration(milliseconds: delayInMilliseconds),
-      () => _products,
-    );
-  }
 
   @override
   Future<List<Product>> getProductsById(List<String> ids) async {
@@ -470,22 +431,12 @@ class MockedProductRepository implements ProductRepository {
   }
 
   @override
-  Future<List<Product>> getFeaturedProducts({
-    List<String>? tagIds,
-    String? lastProductId,
-  }) async {
+  Future<List<Product>> getFeaturedProducts() async {
     int delayInMilliseconds = 1000 + _random.nextInt(2000);
 
     return Future.delayed(
       Duration(milliseconds: delayInMilliseconds),
-      () => _productsWithTags
-          .where((product) {
-            if (tagIds == null) return true;
-
-            return product.tagIds.any((tagId) => tagIds.contains(tagId));
-          })
-          .where((product) => product.id.compareTo(lastProductId ?? '') > 0)
-          .toList(),
+      () => _productsWithTags.toList(),
     );
   }
 

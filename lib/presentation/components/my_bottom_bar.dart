@@ -33,9 +33,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             GoRouter.of(context).replace('/store');
             break;
           case 2:
-            GoRouter.of(context).push('/subscription');
-            break;
-          case 3:
             GoRouter.of(context).push('/orders');
             break;
           default:
@@ -44,11 +41,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       items: [
         _buildBottomNavigationBarItem(Icons.home_outlined, 'Home', 0),
         _buildBottomNavigationBarItem(Icons.store_outlined, 'Loja', 1),
-        _buildBottomNavigationBarItem(
-          Icons.local_drink_outlined,
-          'Assinatura',
-          2,
-        ),
         _buildBottomNavigationBarItem(Icons.menu_book_outlined, 'Pedidos', 3),
       ],
     );

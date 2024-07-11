@@ -1,7 +1,6 @@
 import 'package:consumer_pingou_com/domain/dto/address_input.dart';
 import 'package:consumer_pingou_com/domain/dto/postal_code_query_result.dart';
 import 'package:consumer_pingou_com/domain/entities/address.dart';
-import 'package:consumer_pingou_com/domain/enums/address_state.dart';
 import 'package:consumer_pingou_com/domain/repositories/address_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -10,33 +9,29 @@ class AddressProvider extends ChangeNotifier {
 
   AddressProvider(this._addressRepository);
 
-  final List<Address> _userAddresses = [
-    Address(
-      id: '1',
-      street: 'Rua dos Bobos',
-      number: '21',
-      neighborhood: 'Bairro Feliz',
-      city: 'Cidade Alegre',
-      state: AddressState.rn,
-      postalCode: '12345-678',
-    ),
-    Address(
-      id: '2',
-      street: 'Rua do John Doe',
-      number: '42',
-      neighborhood: 'Bairro Triste',
-      city: 'Cidade Triste',
-      state: AddressState.rs,
-      postalCode: '98765-432',
-    ),
-  ];
-
-  String _selectedAddressId = '1';
+  final List<Address> _userAddresses = [];
+  bool _hasLoadedInitialData = false;
+  String? _selectedAddressId;
 
   List<Address> get userAddresses => List.unmodifiable(_userAddresses);
+  bool get hasLoadedInitialData => _hasLoadedInitialData;
   Address get selectedAddress =>
       _userAddresses.firstWhere((address) => address.id == _selectedAddressId);
-  String get selectedAddressId => _selectedAddressId;
+  String? get selectedAddressId => _selectedAddressId;
+
+  void loadInitialData() async {
+    if (_hasLoadedInitialData) return;
+
+    final addresses = await _addressRepository.getUserAddresses();
+    _userAddresses.addAll(addresses);
+
+    if (_userAddresses.isNotEmpty) {
+      _selectedAddressId = _userAddresses.first.id;
+    }
+
+    _hasLoadedInitialData = true;
+    notifyListeners();
+  }
 
   void setSelectedAddress(Address address) {
     if (address.id == _selectedAddressId) {
@@ -47,10 +42,12 @@ class AddressProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteAddress(Address address) {
+  Future<void> deleteAddress(Address address) async {
     if (_userAddresses.length == 1) {
       return;
     }
+
+    await _addressRepository.delete(address.id);
 
     final oldIndex = _userAddresses.indexOf(address);
     _userAddresses.remove(address);

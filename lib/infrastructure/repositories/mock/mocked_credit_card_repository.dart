@@ -9,6 +9,25 @@ class MockedCreditCardRepository implements CreditCardRepository {
   final Random _random = Random();
 
   @override
+  Future<List<CreditCard>> getAll() async {
+    int delayInMilliseconds = 1000 + _random.nextInt(2000);
+
+    return Future.delayed(
+      Duration(milliseconds: delayInMilliseconds),
+      () => List.generate(
+        _random.nextInt(5) + 1,
+        (index) => CreditCard(
+          id: (_random.nextInt(1000) + 1000).toString(),
+          brand: CardBrand.values[_random.nextInt(CardBrand.values.length)],
+          lastFourDigits:
+              (_random.nextInt(10000) + 10000).toString().substring(1),
+          holderFirstName: 'John',
+        ),
+      ),
+    );
+  }
+
+  @override
   Future<CreditCard> add(CreditCardInput input) async {
     int delayInMilliseconds = 1000 + _random.nextInt(2000);
 
@@ -21,5 +40,12 @@ class MockedCreditCardRepository implements CreditCardRepository {
         holderFirstName: input.holderName.split(' ').first,
       ),
     );
+  }
+
+  @override
+  Future<void> delete(String id) async {
+    int delayInMilliseconds = 1000 + _random.nextInt(2000);
+
+    return Future.delayed(Duration(milliseconds: delayInMilliseconds));
   }
 }

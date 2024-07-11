@@ -1,8 +1,11 @@
-import 'package:consumer_pingou_com/domain/entities/address.dart';
-import 'package:consumer_pingou_com/domain/entities/credit_card.dart';
+import 'dart:developer';
+
 import 'package:consumer_pingou_com/domain/entities/order.dart';
 import 'package:consumer_pingou_com/domain/entities/product.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/order_provider.dart';
+import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/order_status_icon_factory.dart';
 import 'package:consumer_pingou_com/presentation/components/order_status_message_factory.dart';
 import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
@@ -95,9 +98,9 @@ class _OrderData extends StatelessWidget {
             children: [
               _ProductList(items: order.items),
               const SizedBox(height: 16),
-              _AddressSection(address: order.address),
+              _AddressSection(addressId: order.addressId),
               const SizedBox(height: 16),
-              _CreditCardSection(creditCard: order.creditCard),
+              _CreditCardSection(creditCardId: order.creditCardId),
               Expanded(
                 child: SizedBox(
                   child: Column(
@@ -117,8 +120,8 @@ class _OrderData extends StatelessWidget {
   }
 }
 
-class _ProductList extends StatelessWidget {
-  final Map<Product, double> items;
+class _ProductList extends StatefulWidget {
+  final Map<String, double> items;
 
   const _ProductList({required this.items});
 
@@ -212,9 +215,40 @@ class _ProductList extends StatelessWidget {
   }
 
   @override
+  State<_ProductList> createState() => _ProductListState();
+}
+
+class _ProductListState extends State<_ProductList> {
+  final List<Product> _products = [];
+
+  bool _hasLoadedAllProducts = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final storeProvider = context.read<StoreProvider>();
+    storeProvider.getProductsById(widget.items.keys.toList()).then((products) {
+      log('keys: ${widget.items}');
+      log('keys: ${widget.items.keys}');
+      log('Products loaded: $products');
+      log('Items: ${widget.items}');
+
+      setState(() {
+        _products.addAll(products);
+        _hasLoadedAllProducts = true;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final products = items.keys;
-    final quantities = items.values;
+    if (!_hasLoadedAllProducts) {
+      return _ProductList.skeleton(context);
+    }
+
+    final products = widget.items.keys;
+    final quantities = widget.items.values;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,13 +266,13 @@ class _ProductList extends StatelessWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
-            itemCount: items.length,
+            itemCount: widget.items.length,
             itemBuilder: (context, index) {
               EdgeInsets padding;
 
               if (index == 0) {
                 padding = const EdgeInsets.only(left: 16, right: 8);
-              } else if (index == items.length - 1) {
+              } else if (index == widget.items.length - 1) {
                 padding = const EdgeInsets.only(right: 16, left: 8);
               } else {
                 padding = const EdgeInsets.symmetric(horizontal: 0);
@@ -251,7 +285,7 @@ class _ProductList extends StatelessWidget {
                 width: 300,
                 padding: padding,
                 child: HorizontalProductCard(
-                  product: product,
+                  product: _products.firstWhere((p) => p.id == product),
                   trailing: Flexible(
                     flex: 0,
                     child: Container(
@@ -289,39 +323,6 @@ class _AmountsDisplay extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Taxa de antrega',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Text(
-                NumberFormat.simpleCurrency(
-                  locale: 'pt_BR',
-                ).format(order.deliveryFee),
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Taxa de serviço',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Text(
-                NumberFormat.simpleCurrency(
-                  locale: 'pt_BR',
-                ).format(order.serviceFee),
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,6 +1,5 @@
 import 'package:consumer_pingou_com/domain/entities/product.dart';
 import 'package:consumer_pingou_com/domain/entities/product_tag.dart';
-import 'package:consumer_pingou_com/infrastructure/providers/homeScreen_provider.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/store_provider.dart';
 import 'package:consumer_pingou_com/presentation/components/daily_message_factory.dart';
 import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
@@ -14,14 +13,14 @@ import 'package:provider/provider.dart';
 part 'product_list_by_tag.dart';
 part 'product_skeleton.dart';
 part 'product_widget.dart';
-part 'product_widget_carrousel.dart';
 part 'single_tag_product_list.dart';
-part 'store_home_widget.dart';
 part 'tag_list.dart';
 part 'tag_products_list.dart';
 
 class StoreIndexScreen extends StatefulWidget {
-  const StoreIndexScreen({super.key});
+  final String? selectedTagId;
+
+  const StoreIndexScreen({super.key, this.selectedTagId});
 
   @override
   State<StoreIndexScreen> createState() => _StoreIndexScreenState();
@@ -33,7 +32,13 @@ class _StoreIndexScreenState extends State<StoreIndexScreen> {
     super.initState();
 
     final storeProvider = context.read<StoreProvider>();
-    storeProvider.loadInitialData();
+    storeProvider.loadInitialData().then((_) {
+      if (widget.selectedTagId != null) {
+        storeProvider.setSelectedProductTag(widget.selectedTagId!);
+      } else {
+        storeProvider.clearSelectedProductTag();
+      }
+    });
   }
 
   @override

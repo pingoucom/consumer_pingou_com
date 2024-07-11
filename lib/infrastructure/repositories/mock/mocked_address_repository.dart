@@ -71,4 +71,33 @@ class MockedAddressRepository implements AddressRepository {
       ),
     );
   }
+
+  @override
+  Future<List<Address>> getUserAddresses() async {
+    int delayInMilliseconds = 1000 + _random.nextInt(2000);
+
+    return Future.delayed(
+      Duration(milliseconds: delayInMilliseconds),
+      () => List.generate(
+        _random.nextInt(5) + 1,
+        (index) => Address(
+          id: (_random.nextInt(1000) + 1000).toString(),
+          street: 'Rua ${_random.nextInt(1000)}',
+          number: (_random.nextInt(100) + 1).toString(),
+          neighborhood: 'Bairro ${_random.nextInt(1000)}',
+          city: 'Cidade ${_random.nextInt(1000)}',
+          state:
+              AddressState.values[_random.nextInt(AddressState.values.length)],
+          postalCode: '00000-${_random.nextInt(1000)}',
+        ),
+      ),
+    );
+  }
+
+  @override
+  Future<void> delete(String id) async {
+    int delayInMilliseconds = 1000 + _random.nextInt(2000);
+
+    return Future.delayed(Duration(milliseconds: delayInMilliseconds));
+  }
 }

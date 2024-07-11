@@ -1,9 +1,1 @@
-enum OrderStatus {
-  received,
-  confirmed,
-  preparing,
-  ready,
-  onTheWay,
-  delivered,
-  canceled,
-}
+enum OrderStatus { created, confirmed, shipped, delivered, cancelled }

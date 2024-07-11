@@ -52,7 +52,7 @@ class _TagList extends StatelessWidget {
               child: TagChip(
                 tag: tag,
                 onSelected: (selected) => selected
-                    ? storeProvider.setSelectedProductTag(tag)
+                    ? storeProvider.setSelectedProductTag(tag.id)
                     : storeProvider.clearSelectedProductTag(),
                 selectedTagId: storeProvider.selectedProductTagId,
               ),

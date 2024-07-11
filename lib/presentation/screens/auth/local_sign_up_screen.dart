@@ -49,7 +49,7 @@ class _LocalSignUpScreenState extends State<LocalSignUpScreen> {
       return;
     }
 
-    GoRouter.of(context).push('/onboarding/plan');
+    GoRouter.of(context).push('/onboarding/credit-card');
   }
 
   @override

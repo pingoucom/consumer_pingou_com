@@ -92,19 +92,15 @@ class OrderStatusMessageFactory {
 
   static List<TextSpan> make(OrderStatus orderStatus) {
     switch (orderStatus) {
-      case OrderStatus.received:
+      case OrderStatus.created:
         return _makeReceivedMessage();
       case OrderStatus.confirmed:
         return _makeConfirmedMessage();
-      case OrderStatus.preparing:
-        return _makePreparingMessage();
-      case OrderStatus.ready:
-        return _makeReadyMessage();
-      case OrderStatus.onTheWay:
+      case OrderStatus.shipped:
         return _makeOnTheWayMessage();
       case OrderStatus.delivered:
         return _makeDeliveredMessage();
-      case OrderStatus.canceled:
+      case OrderStatus.cancelled:
         return _makeCanceledMessage();
       default:
         return _makeErrorMessage();

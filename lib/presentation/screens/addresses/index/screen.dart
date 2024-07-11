@@ -1,5 +1,6 @@
 import 'package:consumer_pingou_com/domain/entities/address.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/address_provider.dart';
+import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
 import 'package:consumer_pingou_com/presentation/partials/address/address_card.dart';
 import 'package:consumer_pingou_com/presentation/partials/address/address_form.dart';
 import 'package:consumer_pingou_com/presentation/partials/product/blurred_bottom_sheet.dart';
@@ -9,8 +10,21 @@ import 'package:provider/provider.dart';
 
 part 'address_list.dart';
 
-class AddressesIndexScreen extends StatelessWidget {
+class AddressesIndexScreen extends StatefulWidget {
   const AddressesIndexScreen({super.key});
+
+  @override
+  State<AddressesIndexScreen> createState() => _AddressesIndexScreenState();
+}
+
+class _AddressesIndexScreenState extends State<AddressesIndexScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    final addressProvider = context.read<AddressProvider>();
+    addressProvider.loadInitialData();
+  }
 
   @override
   Widget build(BuildContext context) {

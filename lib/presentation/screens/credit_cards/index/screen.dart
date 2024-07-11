@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:consumer_pingou_com/domain/entities/credit_card.dart';
 import 'package:consumer_pingou_com/infrastructure/providers/credit_card_provider.dart';
+import 'package:consumer_pingou_com/presentation/components/skeleton_shape.dart';
 import 'package:consumer_pingou_com/presentation/partials/credit_card/credit_card_card.dart';
 import 'package:consumer_pingou_com/presentation/partials/credit_card/credit_card_form.dart';
 import 'package:consumer_pingou_com/presentation/partials/product/blurred_bottom_sheet.dart';
@@ -9,8 +12,21 @@ import 'package:provider/provider.dart';
 
 part 'credit_card_list.dart';
 
-class CreditCardsIndexScreen extends StatelessWidget {
+class CreditCardsIndexScreen extends StatefulWidget {
   const CreditCardsIndexScreen({super.key});
+
+  @override
+  State<CreditCardsIndexScreen> createState() => _CreditCardsIndexScreenState();
+}
+
+class _CreditCardsIndexScreenState extends State<CreditCardsIndexScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    final creditCardProvider = context.read<CreditCardProvider>();
+    creditCardProvider.loadInitialData();
+  }
 
   @override
   Widget build(BuildContext context) {
