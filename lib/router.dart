@@ -12,7 +12,7 @@ extension GoRouterExtension on GoRouter {
 }
 
 final _router = GoRouter(
-  initialLocation: '/auth/local/sign-in',
+  initialLocation: '/splash',
   navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
